@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'CalligraffitiRegular';
+    src: url('fonts/Calligraffiti/Calligraffiti-webfont.eot');
+    src: url('fonts/Calligraffiti/Calligraffiti-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Calligraffiti/Calligraffiti-webfont.woff') format('woff'),
+        url('fonts/Calligraffiti/Calligraffiti-webfont.ttf') format('truetype'),
+        url('fonts/Calligraffiti/Calligraffiti-webfont.svg#CalligraffitiRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AlexBrushRegular';
+    src: url('fonts/AlexBrush/AlexBrush-Regular-OTF-webfont.eot');
+    src: url('fonts/AlexBrush/AlexBrush-Regular-OTF-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AlexBrush/AlexBrush-Regular-OTF-webfont.woff') format('woff'),
+         url('fonts/AlexBrush/AlexBrush-Regular-OTF-webfont.ttf') format('truetype'),
+         url('fonts/AlexBrush/AlexBrush-Regular-OTF-webfont.svg#AlexBrushRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    overflow: hidden;
+}
+
+#Content {
+    padding-top: 0;
+}
+
+#Controls {
+    position: fixed;
+    display: none;
+    z-index: 5000;
+
+    background-color: #a29cff;
+    
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#a29cff), to(#e8e7fd)); /* Chrome, Safari 4+ */
+    background-image: -webkit-linear-gradient(top, #a29cff, #e8e7fd); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    background-image:    -moz-linear-gradient(top, #a29cff, #e8e7fd); /* Firefox 3.6-15 */
+    background-image:      -o-linear-gradient(top, #a29cff, #e8e7fd); /* Opera 11.10-12.00 */
+    background-image:         linear-gradient(to bottom, #a29cff, #e8e7fd); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+  
+    border-radius: 0 0 15px 15px;
+    border-left: inset 3px #b0b0b0;
+    border-right: inset 3px #b0b0b0;
+    border-bottom: inset 3px #b0b0b0;
+    padding: 0 10px; 
+}
+
+#ControlsContainer button {
+    position: relative;
+/*    top: -10px; */
+    border-radius: 7px; 
+    border: outset 2px #cecfce;
+    background-color: #313042;
+    color: #fff;
+    font: 800 12px arial;
+}
+
+#ControlsTab {
+    padding: 5px 0;
+    text-transform: uppercase;
+    font: 800 16px arial;
+    color: #505050;
+}
+
+.imageContainer {
+    position: absolute;
+    display: none;
+    text-align: center;
+    background-color: #fff;
+    border-top: solid 10px #fff;
+    border-left: solid 10px #fff;
+    border-right: solid 10px #fff;
+    padding-bottom: 10px;
+}
+
+.image {
+/*    
+    border-top: solid 10px #fff;
+    border-left: solid 10px #fff;
+    border-right: solid 10px #fff;
+*/
+    border: solid 1px #000;
+}
+
+.imageCaption {
+    display: block;
+    margin: 0 0 0 10px;
+    color: #000;
+    text-align: center;
+    font: 900 22px 'CalligraffitiRegular';
+    letter-spacing: -1.5px;
+}
+
+.text {
+    position: absolute;
+    display: none;
+    color: yellow;
+    text-shadow: 2px 2px #303030;
+    font: 800 40px arial;
+    white-space: nowrap;
+}
+
+.link {
+    position: absolute;
+    display: none;
+    color: #f00;
+    text-shadow: 2px, 2px #303030;
+    font: 800 40px arial;
+    white-space: nowrap;
+}
+
+#LoadScreen { display: block; }

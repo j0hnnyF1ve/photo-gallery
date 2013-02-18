@@ -1,0 +1,21 @@
+.galleryRow
+{
+  width: 100%;
+  overflow: hidden; 
+}
+
+.galleryRow img {
+  border: solid 2px #fff;
+  float: left;
+  margin: 0 0 10px 15px;
+}
+
+#LightboxImage
+{
+  border: solid 5px #fff;
+  position: fixed;
+  visibility: hidden;
+  z-index: 1010;
+  width: 800;
+  height: 600;
+}

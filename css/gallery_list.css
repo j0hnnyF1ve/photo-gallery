@@ -1,0 +1,10 @@
+#GalleryList
+{
+  margin: 0; padding: 0;
+  list-style-type: none;
+  font-size: 16px;
+}
+#GalleryList li
+{
+  margin-top: 15px;
+}
