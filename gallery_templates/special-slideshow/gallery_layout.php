@@ -36,16 +36,19 @@ foreach($currentGallery as $file)
     array_splice($currentGallery, $key, 1);
   }
 }
-
-$audioFileList = scandir($currentGalleryDir . '/audio');
-
-// take out all directorys in the gallery
-foreach($audioFileList as $file)
+$audioFileList = Array();
+if(is_dir($currentGalleryDir . '/audio') )
 {
-  if(is_dir($currentGalleryDir . '/audio/' . $file) )
+  $audioFileList = scandir($currentGalleryDir . '/audio');
+  
+  // take out all directorys in the gallery
+  foreach($audioFileList as $file)
   {
-    $key = array_search($file, $audioFileList);
-    array_splice($audioFileList, $key, 1);
+    if(is_dir($currentGalleryDir . '/audio/' . $file) )
+    {
+      $key = array_search($file, $audioFileList);
+      array_splice($audioFileList, $key, 1);
+    }
   }
 }
 
