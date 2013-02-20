@@ -7,7 +7,7 @@ GLOBAL.numImagesLoaded = 0;
 
 // wrap in anonymous function to prevent namespace conflicts
 (function(){
-
+  
   // initialize the show, showing the load screen 
   $(document).ready(
     function()
