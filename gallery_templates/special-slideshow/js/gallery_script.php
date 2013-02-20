@@ -6,7 +6,7 @@ GLOBAL.curIndex = 0,
 GLOBAL.numImagesLoaded = 0;
 
 // wrap in anonymous function to prevent namespace conflicts
-(function(){
+// (function(){
   
   // initialize the show, showing the load screen 
   $(document).ready(
@@ -143,4 +143,4 @@ GLOBAL.numImagesLoaded = 0;
   }
 
 
-})();
+// })();
