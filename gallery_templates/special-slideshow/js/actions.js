@@ -5,7 +5,9 @@
  * optional parameters:
  * - imageIndex - select the image to put on stage, by indexId
  */
-function createImage(params)
+var Actions = {};
+
+Actions.createImage = function(params)
 {
   var imageIndex, curImage;
   if( params == null || (params != null && params.srcImage == null) )
@@ -66,7 +68,7 @@ function createImage(params)
  * - numPics - number of pics to render
  * - interval - the time between pics rendered
  */
-function createSliders(numPics, interval)
+Actions.createSliders = function(numPics, interval)
 {
   if(numPics == null || numPics == '') { numPics = 1; }
   if(interval == null || isNaN(interval) ) { interval = 500; }
@@ -88,7 +90,7 @@ function createSliders(numPics, interval)
  * - numPics - number of pics to render
  * - interval - the time between pics rendered
  */
-function createRandomFades(numPics, interval)
+Actions.createRandomFades = function(numPics, interval)
 {
   if(numPics == null || numPics == '') { numPics = 1; }
   if(interval == null || isNaN(interval) ) { interval = 500; }
@@ -116,7 +118,7 @@ function createRandomFades(numPics, interval)
  * - numPics - number of pics to render
  * - interval - the time between pics rendered
  */
-function createRandomSliders(numPics, interval)
+Actions.createRandomSliders = function(numPics, interval)
 {
   if(numPics == null || numPics == '') { numPics = 1; }
   if(interval == null || isNaN(interval) ) { interval = 500; }
