@@ -70,7 +70,8 @@ echo '<div id="Controls">';
           echo 'Sorry, audio is not available at this time';
         echo '</audio>' . chr(10);
       }
-    
+    echo '</div>' . chr(10);
+    echo '<div>';
       echo '<button onclick="pauseShow()">Pause Show</button>';
       echo '<button onclick="continueShow()">Continue Show</button>';
       echo '<button onclick="startShow()">Restart Show</button>';
