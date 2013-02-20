@@ -5,6 +5,8 @@ GLOBAL.curTimeout,
 GLOBAL.curIndex = 0, 
 GLOBAL.numImagesLoaded = 0;
 
+blah
+
 // wrap in anonymous function to prevent namespace conflicts
 (function(){
   
