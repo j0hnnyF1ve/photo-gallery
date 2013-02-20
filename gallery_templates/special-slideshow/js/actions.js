@@ -76,7 +76,7 @@ Actions.createSliders = function(numPics, interval)
   for(var i=0; i < numPics; i++)
   {
     setTimeout( function() {
-        var params = createImage();
+        var params = Actions.createImage();
         
         animation_slider(params);
       }, i * interval );
@@ -101,7 +101,7 @@ Actions.createRandomFades = function(numPics, interval)
   for(var i=0; i < numPics; i++)
   {
     setTimeout( function() {
-        var params = createImage();
+        var params = Actions.createImage();
         
         params.x = Math.floor(Math.random() * (windowWidth - params.image.width() - 50) ) + 50,
         params.y = Math.floor(Math.random() * (windowHeight - params.image.height() - 100 ) ) + 50;
@@ -126,7 +126,7 @@ Actions.createRandomSliders = function(numPics, interval)
   for(var i=0; i < numPics; i++)
   {
     setTimeout( function() {
-        var params = createImage();
+        var params = Actions.createImage();
         
         animation_randomSlider(params);
       }, i * interval );
