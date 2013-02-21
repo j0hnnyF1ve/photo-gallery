@@ -24,9 +24,9 @@ $(document).ready(
       .mouseover( function() { this.style.cursor = 'pointer'; } )
       .mouseout( function() { this.style.cursor = 'default'; } )
       .click( Controls.toggleControls );
-    $('#ControlsPause').click( (function() { Controls.pauseShow(); }) ;
-    $('#ControlsContinue').click( (function() { Controls.continueShow(); }) ;
-    $('#ControlsRestart').click( (function() { Controls.restartShow(); }) ;
+    $('#ControlsPause').click( (function() { Controls.pauseShow(); }) );
+    $('#ControlsContinue').click( (function() { Controls.continueShow(); }) );
+    $('#ControlsRestart').click( (function() { Controls.restartShow(); }) );
       
     Controls.hideControls();
     
