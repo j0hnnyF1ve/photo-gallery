@@ -3,22 +3,21 @@ var Controls_Audio = {};
 (function() {
 "use strict";  
 
+// we can change this later to have the audioTrack value be initialized in the application
+Controls_Audio.audioTrack = document.getElementById('AudioTrack');
 Controls_Audio.startAudio = function()
 {
-  var audioTrack = document.getElementById('AudioTrack');
-  if(audioTrack) { audioTrack.play();  }
+  Controls_Audio.audioTrack.play(); 
 };
 
 Controls_Audio.pauseAudio = function()
 {
-  var audioTrack = document.getElementById('AudioTrack');
-  if(audioTrack) { audioTrack.pause();  }  
+  Controls_Audio.audioTrack.pause(); 
 };
 
 Controls_Audio.resetAudio = function()
 {
-  var audioTrack = document.getElementById('AudioTrack');
-  if(audioTrack) { audioTrack.currentTime = 0;  }
+  Controls_Audio.audioTrack.currentTime = 0;
 };
 
 })();

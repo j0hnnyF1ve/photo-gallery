@@ -1,5 +1,4 @@
 <?php header('Content-type: text/javascript'); ?>
-var GLOBAL = {};
 
 // wrap in anonymous function to prevent namespace conflicts
 (function(){
