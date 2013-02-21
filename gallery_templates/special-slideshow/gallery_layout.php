@@ -1,18 +1,18 @@
 <?php
-require_once('helper.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']) . '/include/helper.php');
+if(!is_dir($galleryRoot) ) { exit('Fatal error: Couldn\'t find gallery path!'); }
 
-if(!is_dir($galleryRoot)) { exit 'Fatal error: Couldn\'t find gallery path!'; }
 
 // var declarations
-$galleryList = Array(),
-$currentGalleryList = Array(),
+$galleryList = Array();
+$currentGalleryList = Array();
 $audioFileList = Array();
 
-$currentGalleryName = '',
+$currentGalleryName = '';
 $currentGalleryDir = '';
 
-$audioFileHtml = '',
-$scriptHtml = '',
+$audioFileHtml = '';
+$scriptHtml = '';
 $imageScriptString = '';
 
 
@@ -26,6 +26,7 @@ if(!empty($currentGalleryList) )
   return;
 }
 
+
 // get the current gallery list
 $currentGalleryDir = $galleryRoot . '/' . $currentGalleryName;
 if(is_dir($currentGalleryDir))
@@ -37,6 +38,7 @@ else
   echo 'The gallery you selected was not found. ';
   return;
 }
+
 
 // write out audio html
 if(is_dir($currentGalleryDir . '/audio') )
@@ -62,11 +64,11 @@ if(is_dir($currentGalleryDir . '/audio') )
   }
 }
 
+
 // write out current gallery list
 if(!empty($currentGalleryList))
 {
   // load the images into the application
-  $imageScriptString = helper_addSpaces('var newImage;', 2) . chr(10);
   foreach($currentGalleryList as $img)
   {
     $imgPath = $currentGalleryDir.'/'. $img;
@@ -74,22 +76,16 @@ if(!empty($currentGalleryList))
     {
       $info = pathinfo($imgPath);
       $dimensions = getimagesize($imgPath);
-      $width = $dimensions[0]; $height = $dimensions[1];
-      
+      $width = $dimensions[0];
+      $height = $dimensions[1];
       $caption = basename($img,'.'.$info['extension']);
+
       ob_start();
+      ?>  addImageToQueue( { src: '<?php echo $imgPath; ?>', ogWidth: '<?php echo $width; ?>', ogHeight: '<?php echo $height; ?>', caption: '<?php echo $caption; ?>', callback: Loaders.imageLoadAction } );<?php
+      echo chr(10);
 
-?>
-  newImage = new Image(); 
-  newImage.src = '<?php echo $imgPath; ?>';
-  newImage.ogWidth = '<?php echo $width; ?>';
-  newImage.ogHeight = '<?php echo $height; ?>';
-  newImage.caption = '<?php echo $caption; ?>';
-  newImage.onload = Loaders.imageLoadAction;
-  GLOBAL.images.push(newImage);
-<?php
-
-      $imageScriptString .= ob_get_flush();
+      $imageScriptString .= ob_get_contents();
+      ob_end_clean();
     }
   }
   
@@ -106,7 +102,20 @@ if(!empty($currentGalleryList))
   Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
   if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
 
-  <?php echo $imageScriptString; ?>
+  // helper function to add images to the queue
+  var addImageToQueue = function( params )
+  {
+    var newImage = new Image();
+    
+    newImage.src = params.src;
+    newImage.ogWidth = params.ogWidth;
+    newImage.ogHeight = params.ogHeight;
+    newImage.caption = params.caption;
+    newImage.onload = params.callback;
+    GLOBAL.images.push(newImage);
+  }
+
+<?php echo $imageScriptString; ?>
 
   // an array of actions/functions
   GLOBAL.actionQueue = Array();
@@ -115,7 +124,8 @@ if(!empty($currentGalleryList))
   /* end gallery layout code */
 </script>  
 <?php  
-  $scriptHtml .= ob_get_flush();
+  $scriptHtml .= ob_get_contents();
+  ob_end_clean();
   // load the special-slideshow-actions.js if it's available
   // holds the playable stack for the gallery
   if(is_dir($currentGalleryDir . '/js') && is_file($currentGalleryDir . '/js/special-slideshow-actions.js') )
@@ -123,7 +133,6 @@ if(!empty($currentGalleryList))
     $scriptHtml .= '<script type="text/javascript" src="' . $currentGalleryDir . '/js/special-slideshow-actions.js' . '" ></script>' . chr(10);
   }
 }
-
 // begin layout below
 ?>
   
@@ -133,9 +142,9 @@ if(!empty($currentGalleryList))
       <?php echo $audioFileHtml; ?>
     </div>
     <div>
-      <button onclick="GLOBAL.pauseShow()">Pause Show</button>
-      <button onclick="GLOBAL.continueShow()">Continue Show</button>
-      <button onclick="GLOBAL.startShow()">Restart Show</button>
+      <button id="ControlsPause" onclick="GLOBAL.pauseShow()">Pause Show</button>
+      <button id="ControlsContinue" onclick="GLOBAL.continueShow()">Continue Show</button>
+      <button id="ControlsStart" onclick="GLOBAL.startShow()">Restart Show</button>
     </div>
   </div>
   <div id="ControlsTab">Controls</div>
