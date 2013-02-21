@@ -76,7 +76,7 @@ Controls.playNextAction = function(index)
 };
 
 // plays the entire stack without pause
-Controls.playStack = function()
+Controls.playQueue = function()
 {
   // play the stack
   // NOTE: we need a way to stop the stack on command, right now we are just queueing
