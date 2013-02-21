@@ -1,0 +1,7 @@
+To upload a gallery, simply upload a folder with images in them.
+It's that simple!
+The title of the gallery will default to the folder name.
+(Feature pending) If you wish to change the title and other options, upload a config.xml folder with your gallery.
+
+Notes:
+Some galleries may require other files, like a .js script file or audio files to play properly
