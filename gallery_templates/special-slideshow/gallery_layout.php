@@ -72,9 +72,9 @@ echo '<div id="Controls">';
       }
     echo '</div>' . chr(10);
     echo '<div>';
-      echo '<button onclick="pauseShow()">Pause Show</button>';
-      echo '<button onclick="continueShow()">Continue Show</button>';
-      echo '<button onclick="startShow()">Restart Show</button>';
+      echo '<button onclick="GLOBAL.pauseShow()">Pause Show</button>';
+      echo '<button onclick="GLOBAL.continueShow()">Continue Show</button>';
+      echo '<button onclick="GLOBAL.startShow()">Restart Show</button>';
     echo '</div>' . chr(10);
     echo '<div>'. chr(10);
     
