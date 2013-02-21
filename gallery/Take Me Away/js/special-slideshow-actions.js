@@ -9,19 +9,11 @@ if(GLOBAL.actionQueue !== null)
     Actions.createRandomFades(1, 3000);
   };
   
-  action = {
-    perform : helper_createRandomFadeAnimations,
-    timeout : 500
-  };
-  GLOBAL.actionQueue.push(action);  
+  GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 500 } );  
 
   for(var i=0; i < 29; i++)
   {
-    action = {
-      perform : helper_createRandomFadeAnimations,
-      timeout : 3500
-    };
-    GLOBAL.actionQueue.push(action);  
+    GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 3500 } );  
   }
 }
 

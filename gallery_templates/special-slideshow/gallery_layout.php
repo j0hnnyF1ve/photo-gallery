@@ -142,9 +142,9 @@ if(!empty($currentGalleryList))
         <?php echo $audioFileHtml; ?>
       </div>
       <div>
-        <button id="ControlsPause" onclick="GLOBAL.pauseShow()">Pause Show</button>
-        <button id="ControlsContinue" onclick="GLOBAL.continueShow()">Continue Show</button>
-        <button id="ControlsStart" onclick="GLOBAL.startShow()">Restart Show</button>
+        <button id="ControlsPause">Pause Show</button>
+        <button id="ControlsContinue">Continue Show</button>
+        <button id="ControlsRestart">Restart Show</button>
       </div>
     </div>
     <div id="ControlsTab">Controls</div>
