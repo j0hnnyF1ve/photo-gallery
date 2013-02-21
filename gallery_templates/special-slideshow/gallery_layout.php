@@ -110,6 +110,7 @@ if(!empty($currentGallery))
   }
 ?>
 <script type="text/javascript">
+  
 (function(){
 "use strict";
   
@@ -126,9 +127,12 @@ echo $scriptString;
 
 // an array of actions/functions
 GLOBAL.actionQueue = Array();
-</script>
+
+
 })();
 /* end gallery layout code */
+
+</script>
 
 <?php
   // load the special-slideshow-actions.js if it's available
