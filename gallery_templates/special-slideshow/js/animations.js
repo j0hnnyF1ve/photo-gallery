@@ -1,15 +1,20 @@
-function animation_slider(params)
+var Animations = {};
+
+/* Start Animations Definition */
+(function() {
+"use strict";  
+
+Animations.slider = function(params)
 {
   // slide in, slide out
-  if(params == null) { return; }
-  if(params.container == null) { return; }
-  if(params.image == null) { return; }
-  if(params.caption == null) { return; }
+  if(params === null) { return; }
+  if(params.container === null) { return; }
+  if(params.image === null) { return; }
+  if(params.caption === null) { return; }
 
   var container = params.container;
   var image = params.image;
-  var caption = params.caption;
-  var callback = (params.callback != null) ? params.callback : null;
+  var callback = (params.callback !== null) ? params.callback : null;
 
   var windowWidth   = $(window).width(),
       windowHeight  = $(window).height();
@@ -23,14 +28,14 @@ function animation_slider(params)
   var startX = 0,
       startY = midPointY;
 
-  var curZ = (params.z != null) ? params.z : 0;
+  var curZ = (params.z !== null) ? params.z : 0;
 
   container.css(
   {
     left: startX + 'px',
     top: startY,
     zIndex: curZ,
-    opacity: 0,
+    opacity: 0
   } );
 
   container
@@ -38,23 +43,22 @@ function animation_slider(params)
   .animate( { opacity: 1, left: midPointX }, { duration: 750 } )
   .delay(1000)
   .animate( { opacity: 0.25, left: windowWidth + 100 },
-            { duration: 750, complete: (function() { if(callback != null) { callback.call(); } container.remove(); } ) }
+            { duration: 750, complete: (function() { if(callback !== null) { callback.call(); } container.remove(); } ) }
     ); 
-}
+};
 
-function animation_randomSlider(params)
+Animations.randomSlider = function(params)
 {
   // random slide in
   // also do tests to see if the params are jquery objects
-  if(params == null) { return; }
-  if(params.container == null) { return; }
-  if(params.image == null) { return; }
-  if(params.caption == null) { return; }
+  if(params === null) { return; }
+  if(params.container === null) { return; }
+  if(params.image === null) { return; }
+  if(params.caption === null) { return; }
 
   var container = params.container;
   var image = params.image;
-  var caption = params.caption;
-  var callback = (params.callback != null) ? params.callback : null;
+  var callback = (params.callback !== null) ? params.callback : null;
   
   var windowWidth   = $(window).width(),
       windowHeight  = $(window).height();
@@ -80,14 +84,14 @@ function animation_randomSlider(params)
   var endX = (startX > midPointX) ? 0 - mainImageWidth - 100 : windowWidth + 100;
   var endY = (startY > midPointY) ? 0 - mainImageHeight - 100 : windowHeight + 100;
 
-  var curZ = (params.z != null) ? params.z : 0;
+  var curZ = (params.z !== null) ? params.z : 0;
   
   container.css(
   {
     left: startX,
     top: startY,
     zIndex: curZ,
-    opacity: 0,
+    opacity: 0
   } )
     .show()
     .animate(
@@ -97,24 +101,23 @@ function animation_randomSlider(params)
     .delay(1000)
     .animate(
       { opacity: 1, left: endX, top: endY },
-      { duration: 750, complete: (function() { if(callback != null) { callback.call(); } container.remove(); } ) }
+      { duration: 750, complete: (function() { if(callback !== null) { callback.call(); } container.remove(); } ) }
     );
 
-}
+};
 
-function animation_fadeIn(params)
+Animations.fadeIn = function(params)
 {
   // fadeIn
   // also do tests to see if the params are jquery objects
-  if(params == null) { return; }
-  if(params.container == null) { return; }
-  if(params.image == null) { return; }
-  if(params.caption == null) { return; }
+  if(params === null) { return; }
+  if(params.container === null) { return; }
+  if(params.image === null) { return; }
+  if(params.caption === null) { return; }
   
   var container = params.container;
   var image = params.image;
-  var caption = params.caption;
-  var callback = (params.callback != null) ? params.callback : null;
+  var callback = (params.callback !== null) ? params.callback : null;
 
   var windowWidth   = $(window).width(),
       windowHeight  = $(window).height();
@@ -125,9 +128,9 @@ function animation_fadeIn(params)
   var midPointX = windowWidth / 2 - mainImageWidth / 2,
       midPointY = windowHeight / 2 - mainImageHeight / 2;
 
-  var curX = (params.x != null) ? params.x : midPointX;
-  var curY = (params.y != null) ? params.y : midPointY;
-  var curZ = (params.z != null) ? params.z : 0;
+  var curX = (params.x !== null) ? params.x : midPointX;
+  var curY = (params.y !== null) ? params.y : midPointY;
+  var curZ = (params.z !== null) ? params.z : 0;
 
   container
     .css(
@@ -138,25 +141,23 @@ function animation_fadeIn(params)
     } )
     .fadeIn(1000)
     .delay(1000)
-    .fadeOut(500, (function() { if(callback != null) { callback.call(); } container.remove(); }) );
-}
+    .fadeOut(500, (function() { if(callback !== null) { callback.call(); } container.remove(); }) );
+};
 
-function animation_show(params)
+Animations.show = function(params)
 {
   // also do tests to see if the params are jquery objects
-  if(params == null) { return; }
-  if(params.container == null) { return; }
-  if(params.image == null) { return; }
-  if(params.caption == null) { return; }
+  if(params === null) { return; }
+  if(params.container === null) { return; }
+  if(params.image === null) { return; }
+  if(params.caption === null) { return; }
  
   var container = params.container;
-  var image = params.image;
-  var caption = params.caption;
-  var callback = (params.callback != null) ? params.callback : null;
+  var callback = (params.callback !== null) ? params.callback : null;
 
-  var curX = (params.x != null) ? params.x : 0;
-  var curY = (params.y != null) ? params.y : 0;
-  var curZ = (params.z != null) ? params.z : 0;
+  var curX = (params.x !== null) ? params.x : 0;
+  var curY = (params.y !== null) ? params.y : 0;
+  var curZ = (params.z !== null) ? params.z : 0;
   
   container
     .css(
@@ -164,25 +165,27 @@ function animation_show(params)
       left: curX + 'px',
       top: curY + 'px',
       zIndex: curZ
-    } ).show()
+    } ).show();
     
-  if(callback != null) { callback.call(); container.remove(); }
-}
+  if(callback !== null) { callback.call(); container.remove(); }
+};
 
-function animation_textFade(params)
+Animations.textFade = function(params)
 {
   // also do tests to see if the params are jquery objects
-  if(params == null) { return; }
-  if(params.textObj == null) { return; }
+  if(params === null) { return; }
+  if(params.textObj === null) { return; }
 
   var textObj = params.textObj;
-  var callback = (params.callback != null) ? params.callback : null;
+  var callback = (params.callback !== null) ? params.callback : null;
 
   textObj.fadeIn(1000)
       .delay(3000)
-      .fadeOut(500, ( function() { if(callback != null) { callback.call(); } } ) );  
-}
+      .fadeOut(500, ( function() { if(callback !== null) { callback.call(); } } ) );  
+};
 
+})(); 
+/* end Animations Definition */
 
 
 
@@ -202,7 +205,7 @@ function animation_textFade(params)
 
 function createRandomImageAndAnimate(params)
 {
-  var imageIndex = (params != null && params.imageIndex != null) ? params.imageIndex : Math.floor( Math.random() * GLOBAL.images.length );
+  var imageIndex = (params !== null && params.imageIndex !== null) ? params.imageIndex : Math.floor( Math.random() * GLOBAL.images.length );
   var curImage = GLOBAL.images[imageIndex];
 
   var randId = Math.floor(Math.random() * 1000000);
@@ -240,7 +243,7 @@ function createRandomImageAndAnimate(params)
     y : curY
   }
 
-  animation_fadeIn(imageParams);
+  Animations.fadeIn(imageParams);
 }
 
 function swapImage(animationType)
@@ -258,7 +261,7 @@ function swapImage(animationType)
 
 function animate(animationType)
 {
-  animationType = (animationType != null) ? animationType : 0;
+  animationType = (animationType !== null) ? animationType : 0;
 //   var animationType = Math.floor(Math.random() * 3);
 
   switch(animationType)
@@ -271,7 +274,7 @@ function animate(animationType)
         x : curX,
         y : curY
       }
-      animation_slider(params);
+      Animations.slider(params);
       break;
     case 1:
       var params = {
@@ -279,7 +282,7 @@ function animate(animationType)
         image : $('#MainImage'),
         caption : $('#MainImageCaption')
       }
-      animation_randomSlider(params);
+      Animations.randomSlider(params);
       break;
     case 2:
       var windowWidth   = $(window).width(),
@@ -297,7 +300,7 @@ function animate(animationType)
         y : curY
       }
 
-      animation_fadeIn(params);
+      Animations.fadeIn(params);
       break;
     case 3:
       var windowWidth   = $(window).width(),
@@ -314,9 +317,10 @@ function animate(animationType)
         x : curX,
         y : curY
       }
-      animation_show(params);
+      Animations.show(params);
       break;
-    default: animation_fadeIn(); break;
+    default: Animations.fadeIn(); break;
   }
 }
 */
+

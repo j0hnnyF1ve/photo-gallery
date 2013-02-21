@@ -1,3 +1,18 @@
+/* NOTES:
+ * Dependencies:
+ * GLOBAL object must exist
+ * GLOBAL.objectIndex must exist
+ * GLOBAL.maxImgSize must exist
+ * ANIMATIONS must exist
+ * ANIMATIONS.slider must exist
+ * ANIMATIONS.fadeIn must exist
+ * ANIMATIONS.randomSlider must exist
+ */
+var Actions = {};
+
+/* Start Actions Definition */
+(function() {
+"use strict";  
 
 /* createImage
  * helper function that creates an image container, image, and caption, and places it in the DOM
@@ -5,14 +20,12 @@
  * optional parameters:
  * - imageIndex - select the image to put on stage, by indexId
  */
-var Actions = {};
-
 Actions.createImage = function(params)
 {
   var imageIndex, curImage;
-  if( params == null || (params != null && params.srcImage == null) )
+  if( params === null || (params !== null && params.srcImage === null) )
   {
-    imageIndex = (params != null && params.imageIndex != null) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
+    imageIndex = (params !== null && params.imageIndex !== null) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
     curImage = GLOBAL.images[imageIndex];
   }
   else
@@ -31,7 +44,7 @@ Actions.createImage = function(params)
       '<img id="' + imageId + '" class="image" />' +
       '<div id="' + imageCaptionId + '" class="imageCaption" ></div>' +
     '</div>'
-  )
+  );
   var imageContainer = $('#' + imageContainerId);
   var image = $('#' + imageId);
   var imageCaption = $('#' + imageCaptionId);
@@ -59,7 +72,7 @@ Actions.createImage = function(params)
     caption : imageCaption
   };
   return imageParams;
-}
+};
 
 /* createSliders
  * helper function that creates sliders across the screen for the specified number of images
@@ -70,18 +83,20 @@ Actions.createImage = function(params)
  */
 Actions.createSliders = function(numPics, interval)
 {
-  if(numPics == null || numPics == '') { numPics = 1; }
-  if(interval == null || isNaN(interval) ) { interval = 500; }
+  if(numPics === null || numPics === '') { numPics = 1; }
+  if(interval === null || isNaN(interval) ) { interval = 500; }
+  
+  var helper_createSlider = function() {
+    var params = Actions.createImage();
+    
+    Animations.slider(params);
+  };
   
   for(var i=0; i < numPics; i++)
   {
-    setTimeout( function() {
-        var params = Actions.createImage();
-        
-        animation_slider(params);
-      }, i * interval );
+    setTimeout(helper_createSlider , i * interval );
   }
-}
+};
 
 /* createRandomFades
  * helper function that creates random fade effects for the specified number of images
@@ -92,24 +107,23 @@ Actions.createSliders = function(numPics, interval)
  */
 Actions.createRandomFades = function(numPics, interval)
 {
-  if(numPics == null || numPics == '') { numPics = 1; }
-  if(interval == null || isNaN(interval) ) { interval = 500; }
+  if(numPics === null || numPics === '') { numPics = 1; }
+  if(interval === null || isNaN(interval) ) { interval = 500; }
   
-  var windowWidth = $(window).width(),
-      windowHeight = $(window).height();  
+  var helper_createRandomFade = function() {
+    var params = Actions.createImage();
+    
+    params.x = Math.floor(Math.random() * ($(window).width() - params.image.width() - 50) ) + 50,
+    params.y = Math.floor(Math.random() * ($(window).height() - params.image.height() - 100 ) ) + 50;
+
+    Animations.fadeIn(params);
+  };
   
   for(var i=0; i < numPics; i++)
   {
-    setTimeout( function() {
-        var params = Actions.createImage();
-        
-        params.x = Math.floor(Math.random() * (windowWidth - params.image.width() - 50) ) + 50,
-        params.y = Math.floor(Math.random() * (windowHeight - params.image.height() - 100 ) ) + 50;
-
-        animation_fadeIn(params);
-      }, i * interval );
+    setTimeout(helper_createRandomFade, i * interval );
   }
-}
+};
 
 /* createRandomSliders
  * helper function that creates random sliders across the screen for the specified number of images
@@ -120,15 +134,20 @@ Actions.createRandomFades = function(numPics, interval)
  */
 Actions.createRandomSliders = function(numPics, interval)
 {
-  if(numPics == null || numPics == '') { numPics = 1; }
-  if(interval == null || isNaN(interval) ) { interval = 500; }
+  if(numPics === null || numPics === '') { numPics = 1; }
+  if(interval === null || isNaN(interval) ) { interval = 500; }
+  
+  var helper_createRandomSlider = function() {
+    var params = Actions.createImage();
+    
+    Animations.randomSlider(params);
+  };
   
   for(var i=0; i < numPics; i++)
   {
-    setTimeout( function() {
-        var params = Actions.createImage();
-        
-        animation_randomSlider(params);
-      }, i * interval );
+    setTimeout(helper_createRandomSlider, i * interval );
   }
-}
+};  
+ 
+})();
+/* End Actions Definition */

@@ -1,10 +1,16 @@
 // only try to load actions if the actionStack is present
-if(GLOBAL.actionQueue != null)
+(function(){
+"use strict";
+
+if(GLOBAL.actionQueue !== null)
 {
   var action;
-
-    action = {
-    perform : function() { Actions.createRandomFades(5, 3000); },
+  var helper_createRandomFadeAnimations = function() {
+    Actions.createRandomFades(5, 3000);
+  };
+  
+  action = {
+    perform : helper_createRandomFadeAnimations,
     timeout : 500
   };
   GLOBAL.actionQueue.push(action);  
@@ -12,9 +18,12 @@ if(GLOBAL.actionQueue != null)
   for(var i=0; i < 29; i++)
   {
     action = {
-      perform : function() { Actions.createRandomFades(5, 3000); },
+      perform : helper_createRandomFadeAnimations,
       timeout : 16000
     };
     GLOBAL.actionQueue.push(action);  
   }
 }
+
+})();
+/* end special-slideshow-actions */

@@ -1,6 +1,12 @@
-GLOBAL.loadingInterval = null,
-GLOBAL.numOfPeriods = 0;
-function showLoadingText()
+var Loaders = {};
+
+(function(){
+"use strict";
+
+Loaders.loadingInterval = null, // variable that holds the loadingInterval Id
+Loaders.numOfPeriods = 0;
+
+Loaders.showLoadingText = function()
 {
   $('#LoadScreen').html(
     '<div id="LoadingText" style="position: absolute; font: 30px Verdana">Loading...</div>'
@@ -13,30 +19,34 @@ function showLoadingText()
       midPointY = windowHeight / 2 - $('#LoadingText').height() / 2;
 
   $('#LoadingText').css( { left: midPointX, top: midPointY } );
-  GLOBAL.loadingInterval = setInterval(animateLoadingText, 500);
-}
+  Loaders.loadingInterval = setInterval(Loaders.animateLoadingText, 500);
+};
 
-function animateLoadingText()
+Loaders.animateLoadingText = function()
 {
-  loadingText = 'Loading';
-  for(var i=0; i < GLOBAL.numOfPeriods; i++)
+  var loadingText = 'Loading';
+  for(var i=0; i < Loaders.numOfPeriods; i++)
   {
     loadingText += '.';
   }
   $('#LoadingText').html(loadingText);
-  GLOBAL.numOfPeriods = (GLOBAL.numOfPeriods + 1) % 4;
-}
-function stopLoadingText()
+  Loaders.numOfPeriods = (Loaders.numOfPeriods + 1) % 4;
+};
+
+Loaders.stopLoadingText = function()
 {
-  clearInterval(GLOBAL.loadingInterval);
-}
+  clearInterval(Loaders.loadingInterval);
+};
 
 // updates the loading screen to show assets that have been loaded
-function loadAction()
+Loaders.loadAction = function()
 {
-  if(GLOBAL != null && GLOBAL.detailedLoad == 'true')
+  if(GLOBAL !== null && GLOBAL.detailedLoad === 'true')
   {
     $('#LoadScreen').html( $('#LoadScreen').html() + '<div>' + this.src + ' was loaded.</div>');
   }
   GLOBAL.numImagesLoaded++;
-}
+};
+
+})();
+/* end Loaders */
