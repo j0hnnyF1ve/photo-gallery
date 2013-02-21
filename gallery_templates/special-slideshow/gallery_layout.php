@@ -1,25 +1,36 @@
 <?php
-$galleryList = scandir($galleryRoot);
-// get rid of the . and .. operators in the directory list
-foreach($galleryList as $file)
-{
-  if(is_dir($galleryRoot . '/' . $file) )
-  {
-    $key = array_search($file, $galleryList);
-    array_splice($galleryList, $key, 1);
-  }
-}
+require_once('helper.php');
+
+if(!is_dir($galleryRoot)) { exit 'Fatal error: Couldn\'t find gallery path!'; }
+
+// var declarations
+$galleryList = Array(),
+$currentGalleryList = Array(),
+$audioFileList = Array();
+
+$currentGalleryName = '',
+$currentGalleryDir = '';
+
+$audioFileHtml = '',
+$scriptHtml = '',
+$imageScriptString = '';
+
+
+// get the list of all galleries
+$galleryList = helper_trimFileList( scandir($galleryRoot), $galleryRoot );
 
 $currentGalleryName = isset($_GET['currentGallery']) ? $_GET['currentGallery'] : $galleryList[0];
-if(!empty($currentGallery) )
+if(!empty($currentGalleryList) ) 
 {
   echo 'The gallery you selected was not found. ';
   return;
 }
+
+// get the current gallery list
 $currentGalleryDir = $galleryRoot . '/' . $currentGalleryName;
 if(is_dir($currentGalleryDir))
 {
-  $currentGallery = scandir($currentGalleryDir);
+  $currentGalleryList = helper_trimFileList( scandir($currentGalleryDir), $currentGalleryDir );
 }
 else
 {
@@ -27,69 +38,36 @@ else
   return;
 }
 
-// take out all directorys in the gallery
-foreach($currentGallery as $file)
-{
-  if(is_dir($currentGalleryDir . '/' . $file) )
-  {
-    $key = array_search($file, $currentGallery);
-    array_splice($currentGallery, $key, 1);
-  }
-}
-$audioFileList = Array();
+// write out audio html
 if(is_dir($currentGalleryDir . '/audio') )
 {
-  $audioFileList = scandir($currentGalleryDir . '/audio');
-  
-  // take out all directorys in the gallery
-  foreach($audioFileList as $file)
+  $audioFileList = helper_trimFileList( scandir($currentGalleryDir . '/audio'), $currentGalleryDir . '/audio' );
+
+  // generate the Audio Html
+  if(!empty($audioFileList))
   {
-    if(is_dir($currentGalleryDir . '/audio/' . $file) )
-    {
-      $key = array_search($file, $audioFileList);
-      array_splice($audioFileList, $key, 1);
+    if($debug === true) {
+      $audioFileHtml .= helper_addSpaces('<audio id="AudioTrack" controls="controls">', 6)  . chr(10);
     }
+    else {
+      $audioFileHtml .= helper_addSpaces('<audio id="AudioTrack" controls="controls">', 6)  . chr(10);
+    }
+
+    foreach($audioFileList as $audioFile)
+    {
+      $audioFileHtml .= helper_addSpaces('<source src="'.$currentGalleryDir. '/audio/' . $audioFile.'" type="audio/mpeg" />', 8)  . chr(10); // testing audio at this moment
+    }
+    $audioFileHtml .= helper_addSpaces('Sorry, audio is not available at this time', 8);
+    $audioFileHtml .= helper_addSpaces('</audio>', 6) . chr(10);
   }
 }
 
-echo '<div id="Controls">';
-  echo '<div id="ControlsContainer">';
-    echo '<div>';
-      if(!empty($audioFileList))
-      {
-        if($debug === true) {
-          echo '<audio id="AudioTrack" controls="controls">'  . chr(10);
-        }
-        else {
-          echo '<audio id="AudioTrack" controls="controls">'  . chr(10);
-        }
-          foreach($audioFileList as $audioFile)
-          {
-            echo '<source src="'.$currentGalleryDir. '/audio/' . $audioFile.'" type="audio/mpeg" />'  . chr(10); // testing audio at this moment
-          }
-          echo 'Sorry, audio is not available at this time';
-        echo '</audio>' . chr(10);
-      }
-    echo '</div>' . chr(10);
-    echo '<div>';
-      echo '<button onclick="GLOBAL.pauseShow()">Pause Show</button>';
-      echo '<button onclick="GLOBAL.continueShow()">Continue Show</button>';
-      echo '<button onclick="GLOBAL.startShow()">Restart Show</button>';
-    echo '</div>' . chr(10);
-    echo '<div>'. chr(10);
-    
-    echo '</div>'. chr(10);
-  echo '</div>'. chr(10);
-  echo '<div id="ControlsTab">';
-    echo 'Controls';
-  echo '</div>'. chr(10);
-echo '</div>'. chr(10);
-
-if(!empty($currentGallery))
+// write out current gallery list
+if(!empty($currentGalleryList))
 {
   // load the images into the application
-  $scriptString = 'var newImage;' . chr(10);
-  foreach($currentGallery as $img)
+  $imageScriptString = helper_addSpaces('var newImage;', 2) . chr(10);
+  foreach($currentGalleryList as $img)
   {
     $imgPath = $currentGalleryDir.'/'. $img;
     if(is_file($imgPath) )
@@ -99,48 +77,67 @@ if(!empty($currentGallery))
       $width = $dimensions[0]; $height = $dimensions[1];
       
       $caption = basename($img,'.'.$info['extension']);
-      $scriptString .= 'newImage = new Image(); ' . chr(10) .
-        'newImage.src = \''. $imgPath . '\'; ' . chr(10) .
-        'newImage.ogWidth = \'' . $width . '\'; ' . chr(10) .
-        'newImage.ogHeight = \'' . $height . '\'; ' . chr(10) .
-        'newImage.caption = \'' . $caption . '\'; ' . chr(10) .
-        'newImage.onload = Loaders.imageLoadAction; ' . chr(10) . 
-        'GLOBAL.images.push(newImage); ' . chr(10) . chr(10); 
+      ob_start();
+
+?>
+  newImage = new Image(); 
+  newImage.src = '<?php echo $imgPath; ?>';
+  newImage.ogWidth = '<?php echo $width; ?>';
+  newImage.ogHeight = '<?php echo $height; ?>';
+  newImage.caption = '<?php echo $caption; ?>';
+  newImage.onload = Loaders.imageLoadAction;
+  GLOBAL.images.push(newImage);
+<?php
+
+      $imageScriptString .= ob_get_flush();
     }
   }
+  
+  // create script html
+  ob_start();
 ?>
 <script type="text/javascript">
+  (function(){
+  "use strict";
   
-(function(){
-"use strict";
+  GLOBAL.images = Array();
+  GLOBAL.objectIndex = 0;
+  GLOBAL.maxImgSize = 400;
+  Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
+  if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
+
+  <?php echo $imageScriptString; ?>
+
+  // an array of actions/functions
+  GLOBAL.actionQueue = Array();
   
-GLOBAL.images = Array();
-GLOBAL.objectIndex = 0;
-GLOBAL.maxImgSize = 400;
-Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
-if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
-
-<?php
-// create the images array
-echo $scriptString;
-?>
-
-// an array of actions/functions
-GLOBAL.actionQueue = Array();
-
-
-})();
-/* end gallery layout code */
-
-</script>
-
-<?php
+  })();
+  /* end gallery layout code */
+</script>  
+<?php  
+  $scriptHtml .= ob_get_flush();
   // load the special-slideshow-actions.js if it's available
   // holds the playable stack for the gallery
   if(is_dir($currentGalleryDir . '/js') && is_file($currentGalleryDir . '/js/special-slideshow-actions.js') )
   {
-    echo '<script type="text/javascript" src="' . $currentGalleryDir . '/js/special-slideshow-actions.js' . '" ></script>' . chr(10);
+    $scriptHtml .= '<script type="text/javascript" src="' . $currentGalleryDir . '/js/special-slideshow-actions.js' . '" ></script>' . chr(10);
   }
 }
 
+// begin layout below
 ?>
+  
+<div id="Controls">
+  <div id="ControlsContainer">
+    <div>
+      <?php echo $audioFileHtml; ?>
+    </div>
+    <div>
+      <button onclick="GLOBAL.pauseShow()">Pause Show</button>
+      <button onclick="GLOBAL.continueShow()">Continue Show</button>
+      <button onclick="GLOBAL.startShow()">Restart Show</button>
+    </div>
+  </div>
+  <div id="ControlsTab">Controls</div>
+</div>
+<?php echo $scriptHtml; ?>
