@@ -1,6 +1,7 @@
 <?php header('Content-type: text/javascript'); ?>
 /* Dependencies:
  * jQuery and the $ jquery object is expected to exist
+ * Loaders is expected to exist because of page loader
  */
 
 if(GLOBAL === null) { GLOBAL = {}; }
@@ -9,10 +10,9 @@ if(GLOBAL === null) { GLOBAL = {}; }
 (function(){
 "use strict";
 
-GLOBAL.interval = null,
-GLOBAL.curTimeout = null,
-GLOBAL.curIndex = 0, 
-GLOBAL.numImagesLoaded = 0;
+GLOBAL.curInterval = null,  // variable used to store the GLOBAL interval Id returned from setInterval
+GLOBAL.curTimeout = null,   // variable used to store the GLOBAL timeout Id returned from setTimeout
+GLOBAL.curIndex = 0,        // stores the current place in the slideshow
   
 // initialize the show, showing the load screen 
 $(document).ready(
@@ -29,10 +29,10 @@ $(document).ready(
       
     GLOBAL.hideControls();
     
-    GLOBAL.interval = setInterval( (
+    GLOBAL.curInterval = setInterval( (
       function() {
         // check to see if all assets have been loaded... if so, then start the show!
-        if(GLOBAL.numImagesLoaded >= GLOBAL.images.length)
+        if(Loaders.numImagesLoaded >= GLOBAL.images.length)
         {
           if(GLOBAL.detailedLoad !== 'true') {
             Loaders.stopLoadingText();
@@ -41,7 +41,7 @@ $(document).ready(
             $('#LoadScreen').html( $('#LoadScreen').html() + '<div>All assets have been loaded.</div>');    
           }
           // get rid of the load screen, quit checking for a finished load, clear the interval
-          clearInterval(GLOBAL.interval);
+          clearInterval(GLOBAL.curInterval);
           $('#LoadScreen').fadeOut(1500);
        
           // start the slide show

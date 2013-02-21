@@ -110,11 +110,14 @@ if(!empty($currentGallery))
   }
 ?>
 <script type="text/javascript">
+(function(){
+"use strict";
+  
 GLOBAL.images = Array();
 GLOBAL.objectIndex = 0;
 GLOBAL.maxImgSize = 400;
 GLOBAL.detailedLoad = '<?php echo isset($_GET['detailedLoad']) ? $_GET['detailedLoad'] : "false"; ?>';
-if(GLOBAL.detailedLoad != 'true') { showLoadingText(); }
+if(GLOBAL.detailedLoad != 'true') { Loaders.showLoadingText(); }
 
 <?php
 // create the images array
@@ -124,6 +127,8 @@ echo $scriptString;
 // an array of actions/functions
 GLOBAL.actionQueue = Array();
 </script>
+})();
+/* end gallery layout code */
 
 <?php
   // load the special-slideshow-actions.js if it's available
@@ -133,4 +138,5 @@ GLOBAL.actionQueue = Array();
     echo '<script type="text/javascript" src="' . $currentGalleryDir . '/js/special-slideshow-actions.js' . '" ></script>' . chr(10);
   }
 }
+
 ?>

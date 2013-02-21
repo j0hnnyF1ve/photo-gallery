@@ -4,7 +4,8 @@ var Loaders = {};
 "use strict";
 
 Loaders.loadingInterval = null, // variable that holds the loadingInterval Id
-Loaders.numOfPeriods = 0;
+Loaders.numImagesLoaded = 0,    // variable that holds the number of images currently loaded
+Loaders.numOfPeriods = 0;       // variable that holds the number of periods currently showing in the Loading... text
 
 Loaders.showLoadingText = function()
 {
@@ -45,7 +46,7 @@ Loaders.loadAction = function()
   {
     $('#LoadScreen').html( $('#LoadScreen').html() + '<div>' + this.src + ' was loaded.</div>');
   }
-  GLOBAL.numImagesLoaded++;
+  Loaders.numImagesLoaded++;
 };
 
 })();
