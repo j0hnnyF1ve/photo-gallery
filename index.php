@@ -60,7 +60,7 @@ if(!empty($galleryTemplate) )
     {
       foreach($scriptList as $script)
       {
-        $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>', 4)  . chr(10);
+        $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>', 2)  . chr(10);
       }
     }
   }
