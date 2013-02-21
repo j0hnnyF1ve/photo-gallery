@@ -92,37 +92,37 @@ if(!empty($currentGalleryList))
   // create script html
   ob_start();
 ?>
-<script type="text/javascript">
-  (function(){
-  "use strict";
-  
-  GLOBAL.images = Array();
-  GLOBAL.objectIndex = 0;
-  GLOBAL.maxImgSize = 400;
-  Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
-  if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
-
-  // helper function to add images to the queue
-  var addImageToQueue = function( params )
-  {
-    var newImage = new Image();
+  <script type="text/javascript">
+    (function(){
+    "use strict";
     
-    newImage.src = params.src;
-    newImage.ogWidth = params.ogWidth;
-    newImage.ogHeight = params.ogHeight;
-    newImage.caption = params.caption;
-    newImage.onload = params.callback;
-    GLOBAL.images.push(newImage);
-  }
-
-<?php echo $imageScriptString; ?>
-
-  // an array of actions/functions
-  GLOBAL.actionQueue = Array();
+    GLOBAL.images = Array();
+    GLOBAL.objectIndex = 0;
+    GLOBAL.maxImgSize = 400;
+    Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
+    if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
   
-  })();
-  /* end gallery layout code */
-</script>  
+    // helper function to add images to the queue
+    var addImageToQueue = function( params )
+    {
+      var newImage = new Image();
+      
+      newImage.src = params.src;
+      newImage.ogWidth = params.ogWidth;
+      newImage.ogHeight = params.ogHeight;
+      newImage.caption = params.caption;
+      newImage.onload = params.callback;
+      GLOBAL.images.push(newImage);
+    }
+  
+  <?php echo $imageScriptString; ?>
+  
+    // an array of actions/functions
+    GLOBAL.actionQueue = Array();
+    
+    })();
+    /* end gallery layout code */
+  </script>  
 <?php  
   $scriptHtml .= ob_get_contents();
   ob_end_clean();
@@ -130,23 +130,23 @@ if(!empty($currentGalleryList))
   // holds the playable stack for the gallery
   if(is_dir($currentGalleryDir . '/js') && is_file($currentGalleryDir . '/js/special-slideshow-actions.js') )
   {
-    $scriptHtml .= '<script type="text/javascript" src="' . $currentGalleryDir . '/js/special-slideshow-actions.js' . '" ></script>' . chr(10);
+    $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $currentGalleryDir . '/js/special-slideshow-actions.js' . '" ></script>', 2) . chr(10);
   }
 }
 // begin layout below
 ?>
   
-<div id="Controls">
-  <div id="ControlsContainer">
-    <div>
-      <?php echo $audioFileHtml; ?>
+  <div id="Controls">
+    <div id="ControlsContainer">
+      <div>
+        <?php echo $audioFileHtml; ?>
+      </div>
+      <div>
+        <button id="ControlsPause" onclick="GLOBAL.pauseShow()">Pause Show</button>
+        <button id="ControlsContinue" onclick="GLOBAL.continueShow()">Continue Show</button>
+        <button id="ControlsStart" onclick="GLOBAL.startShow()">Restart Show</button>
+      </div>
     </div>
-    <div>
-      <button id="ControlsPause" onclick="GLOBAL.pauseShow()">Pause Show</button>
-      <button id="ControlsContinue" onclick="GLOBAL.continueShow()">Continue Show</button>
-      <button id="ControlsStart" onclick="GLOBAL.startShow()">Restart Show</button>
-    </div>
+    <div id="ControlsTab">Controls</div>
   </div>
-  <div id="ControlsTab">Controls</div>
-</div>
 <?php echo $scriptHtml; ?>

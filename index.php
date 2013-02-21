@@ -3,23 +3,25 @@
 ** index.php and the "page" folder are linked together
 ** Content from the "pages" folder must be called from index.php
 */
+require_once($_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']) . '/include/helper.php');
+
 $page = isset($_GET['page']) ? $_GET['page'] : 'gallery_list';
 $galleryRoot = 'gallery'; // root of the main gallery folder
 $galleryTemplateRoot = 'gallery_templates';
 $galleryTemplate = isset($_GET['galleryType']) ? $_GET['galleryType'] : 'thumbnail-grid'; // string that tells us how the gallery should be displayed
 $debug = isset($_GET['debug']) ? true : false;
-?>
-<!DOCTYPE HTML>
-<html>
-  
-  
-<head>
-  <title>A Road A Little Less Traveled</title>
-  <link rel="stylesheet" href="css/main.css" />
-<?php
+
+// var declarations
+$pageCss = '';
+$galleryCss = '';
+$scriptHtml = '';
+
+// create page CSS
 if(!empty($page) && is_file('css/' . $page .'.css') ) {
-  echo '<link rel="stylesheet" href="css/' . $page . '.css" />' . chr(10);
+  $pageCss .= helper_addSpaces('<link rel="stylesheet" href="css/' . $page . '.css" />', 2) . chr(10);
 }
+
+// create gallery CSS
 if(!empty($galleryTemplate) )
 {
   $stylesheetPath = $galleryTemplateRoot . '/' . $galleryTemplate . '/css';
@@ -35,18 +37,14 @@ if(!empty($galleryTemplate) )
     {
       foreach($stylesheetList as $stylesheet)
       {
-        echo '<link rel="stylesheet" href="' . $stylesheetPath .'/' . $stylesheet . '" />' . chr(10);
+        $galleryCss .= helper_addSpaces('<link rel="stylesheet" href="' . $stylesheetPath .'/' . $stylesheet . '" />', 2) . chr(10);
       }
     }
   }
 }
-?>
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript">
-    var GLOBAL = {}; // define the GLOBAL object, so we know what values in the program are global
-  </script>
-  <script type="text/javascript" src="js/loaders.js"></script>
-<?php
+
+
+// create Script Html
 if(!empty($galleryTemplate) )
 {
   $scriptPath = $galleryTemplateRoot . '/' . $galleryTemplate . '/js';
@@ -62,36 +60,49 @@ if(!empty($galleryTemplate) )
     {
       foreach($scriptList as $script)
       {
-        echo '<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>'  . chr(10);
+        $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>', 4)  . chr(10);
       }
     }
   }
 }
+
+
+
+// begin HTML declaration
 ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>A Road A Little Less Traveled</title>
+  <link rel="stylesheet" href="css/main.css" />
+<?php echo $pageCss; ?>
+<?php echo $galleryCss; ?>
 </head>
-
-
 
 <body>
   <div id="LoadScreen"></div>
   <div id="Lightbox"></div>
   <div id="Content">
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+    var GLOBAL = {}; // define the GLOBAL object, so we know what values in the program are global
+  </script>
+  <script type="text/javascript" src="js/loaders.js"></script>
+<?php echo $scriptHtml; ?>
 <?php
-  if(strlen($page) > 0)
+// create page Html
+if(strlen($page) > 0)
+{
+  if(is_file('page/' . $page . '.php') )
   {
-    if(is_file('page/' . $page . '.php') )
-    {
-      require_once('page/' . $page . '.php');
-    }
-    else
-    {
-      require_once('page/page_not_found.php');
-    }
+    include('page/' . $page . '.php');
   }
+  else
+  {
+    include('page/page_not_found.php');
+  }
+}
 ?>
-  </div>
+</div>
 </body>
-
-
-
 </html>
