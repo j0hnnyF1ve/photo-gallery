@@ -3,6 +3,7 @@ var Loaders = {};
 (function(){
 "use strict";
 
+Loaders.detailedLoad = false,   // value that determines if we show a detailed load, or a regular load
 Loaders.loadingInterval = null, // variable that holds the loadingInterval Id
 Loaders.numImagesLoaded = 0,    // variable that holds the number of images currently loaded
 Loaders.numOfPeriods = 0;       // variable that holds the number of periods currently showing in the Loading... text
@@ -39,10 +40,13 @@ Loaders.stopLoadingText = function()
   clearInterval(Loaders.loadingInterval);
 };
 
-// updates the loading screen to show assets that have been loaded
-Loaders.loadAction = function()
+/*
+ * Callback to be used with images
+ * When an image loads, on a detailed load
+ */
+Loaders.imageLoadAction = function()
 {
-  if(GLOBAL !== null && GLOBAL.detailedLoad === 'true')
+  if(GLOBAL !== null && Loaders.detailedLoad === 'true')
   {
     $('#LoadScreen').html( $('#LoadScreen').html() + '<div>' + this.src + ' was loaded.</div>');
   }

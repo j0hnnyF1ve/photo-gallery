@@ -34,7 +34,7 @@ $(document).ready(
         // check to see if all assets have been loaded... if so, then start the show!
         if(Loaders.numImagesLoaded >= GLOBAL.images.length)
         {
-          if(GLOBAL.detailedLoad !== 'true') {
+          if(Loaders.detailedLoad !== 'true') {
             Loaders.stopLoadingText();
           }
           else {

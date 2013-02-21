@@ -104,7 +104,7 @@ if(!empty($currentGallery))
         'newImage.ogWidth = \'' . $width . '\'; ' . chr(10) .
         'newImage.ogHeight = \'' . $height . '\'; ' . chr(10) .
         'newImage.caption = \'' . $caption . '\'; ' . chr(10) .
-        'newImage.onload = loadAction; ' . chr(10) . 
+        'newImage.onload = Loaders.imageLoadAction; ' . chr(10) . 
         'GLOBAL.images.push(newImage); ' . chr(10) . chr(10); 
     }
   }
@@ -117,8 +117,8 @@ if(!empty($currentGallery))
 GLOBAL.images = Array();
 GLOBAL.objectIndex = 0;
 GLOBAL.maxImgSize = 400;
-GLOBAL.detailedLoad = '<?php echo isset($_GET['detailedLoad']) ? $_GET['detailedLoad'] : "false"; ?>';
-if(GLOBAL.detailedLoad != 'true') { Loaders.showLoadingText(); }
+Loaders.detailedLoad = '<?php echo isset($_GET['detailedLoad']) ? $_GET['detailedLoad'] : "false"; ?>';
+if(Loaders.detailedLoad != 'true') { Loaders.showLoadingText(); }
 
 <?php
 // create the images array
