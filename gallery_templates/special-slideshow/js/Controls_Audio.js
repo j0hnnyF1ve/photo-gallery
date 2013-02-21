@@ -4,7 +4,9 @@ var Controls_Audio = {};
 "use strict";  
 
 // we can change this later to have the audioTrack value be initialized in the application
-Controls_Audio.audioTrack = document.getElementById('AudioTrack');
+Controls_Audio.audioTrack = null;
+$(window).ready( function() { Controls_Audio.audioTrack = document.getElementById('AudioTrack'); } );
+
 Controls_Audio.startAudio = function()
 {
   Controls_Audio.audioTrack.play(); 
