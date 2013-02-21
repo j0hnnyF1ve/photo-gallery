@@ -6,7 +6,7 @@ if(GLOBAL.actionQueue !== null)
 {
   var action;
   var helper_createRandomFadeAnimations = function() {
-    Actions.createRandomFades(5, 3000);
+    Actions.createRandomFades(1, 3000);
   };
   
   action = {
@@ -19,7 +19,7 @@ if(GLOBAL.actionQueue !== null)
   {
     action = {
       perform : helper_createRandomFadeAnimations,
-      timeout : 16000
+      timeout : 3500
     };
     GLOBAL.actionQueue.push(action);  
   }
