@@ -117,8 +117,8 @@ if(!empty($currentGallery))
 GLOBAL.images = Array();
 GLOBAL.objectIndex = 0;
 GLOBAL.maxImgSize = 400;
-Loaders.detailedLoad = '<?php echo isset($_GET['detailedLoad']) ? $_GET['detailedLoad'] : "false"; ?>';
-if(Loaders.detailedLoad != 'true') { Loaders.showLoadingText(); }
+Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
+if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
 
 <?php
 // create the images array

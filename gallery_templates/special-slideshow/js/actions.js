@@ -23,9 +23,9 @@ var Actions = {};
 Actions.createImage = function(params)
 {
   var imageIndex, curImage;
-  if( params === null || (params !== null && params.srcImage === null) )
+  if( !params || (params && !params.srcImage) )
   {
-    imageIndex = (params !== null && params.imageIndex !== null) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
+    imageIndex = (params && params.imageIndex) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
     curImage = GLOBAL.images[imageIndex];
   }
   else
@@ -83,8 +83,8 @@ Actions.createImage = function(params)
  */
 Actions.createSliders = function(numPics, interval)
 {
-  if(numPics === null || numPics === '') { numPics = 1; }
-  if(interval === null || isNaN(interval) ) { interval = 500; }
+  if(!numPics || numPics === '') { numPics = 1; }
+  if(!interval || isNaN(interval) ) { interval = 500; }
   
   var helper_createSlider = function() {
     var params = Actions.createImage();
@@ -107,8 +107,8 @@ Actions.createSliders = function(numPics, interval)
  */
 Actions.createRandomFades = function(numPics, interval)
 {
-  if(numPics === null || numPics === '') { numPics = 1; }
-  if(interval === null || isNaN(interval) ) { interval = 500; }
+  if(!numPics || numPics === '') { numPics = 1; }
+  if(!interval || isNaN(interval) ) { interval = 500; }
   
   var helper_createRandomFade = function() {
     var params = Actions.createImage();
@@ -134,8 +134,8 @@ Actions.createRandomFades = function(numPics, interval)
  */
 Actions.createRandomSliders = function(numPics, interval)
 {
-  if(numPics === null || numPics === '') { numPics = 1; }
-  if(interval === null || isNaN(interval) ) { interval = 500; }
+  if(!numPics || numPics === '') { numPics = 1; }
+  if(!interval || isNaN(interval) ) { interval = 500; }
   
   var helper_createRandomSlider = function() {
     var params = Actions.createImage();

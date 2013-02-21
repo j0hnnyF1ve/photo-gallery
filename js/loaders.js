@@ -46,7 +46,7 @@ Loaders.stopLoadingText = function()
  */
 Loaders.imageLoadAction = function()
 {
-  if(GLOBAL !== null && Loaders.detailedLoad === 'true')
+  if(Loaders.detailedLoad === true)
   {
     $('#LoadScreen').html( $('#LoadScreen').html() + '<div>' + this.src + ' was loaded.</div>');
   }

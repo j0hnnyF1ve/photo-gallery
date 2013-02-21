@@ -13,8 +13,8 @@ var TextActions = {} ;
 TextActions.createText = function(params)
 {
   var textId = 'Text' + GLOBAL.objectIndex++;
-  var text = (params !== null && params.text !== null) ? params.text : '';
-  var curZ = (params !== null && params.z !== null ) ? params.z : 0;
+  var text = (params && params.text) ? params.text : '';
+  var curZ = (params && params.z) ? params.z : 0;
   
   $('#Content').append(
     '<div id="' + textId+ '" class="text" >' + text + 
@@ -27,10 +27,10 @@ TextActions.createText = function(params)
 
 TextActions.moveText = function(params)
 {
-  if(params === null) { return; }
-  if(params.textObj === null) { return; }
-  if(params.x === null) { return; }
-  if(params.y === null) { return; }
+  if(!params) { return; }
+  if(!params.textObj) { return; }
+  if(!params.x) { return; }
+  if(!params.y) { return; }
   var textObj = params.textObj;
   
   var curX = params.x - (textObj.width() / 2),
@@ -41,11 +41,11 @@ TextActions.moveText = function(params)
 
 TextActions.slideText = function(params)
 {
-  if(params === null) { return; }
-  if(params.textObj === null) { return; }
-  if(params.x === null) { return; }
-  if(params.y === null) { return; }
-  if(params.animationTime === null ) { return; }
+  if(!params) { return; }
+  if(!params.textObj) { return; }
+  if(!params.x) { return; }
+  if(!params.y) { return; }
+  if(!params.animationTime) { return; }
 
   var textObj = params.textObj;  
   

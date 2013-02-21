@@ -4,7 +4,7 @@
  * Loaders is expected to exist because of page loader
  */
 
-if(GLOBAL === null) { GLOBAL = {}; }
+if(!GLOBAL) { GLOBAL = {}; }
 
 // wrap in anonymous function to prevent namespace conflicts
 (function(){
@@ -34,7 +34,7 @@ $(document).ready(
         // check to see if all assets have been loaded... if so, then start the show!
         if(Loaders.numImagesLoaded >= GLOBAL.images.length)
         {
-          if(Loaders.detailedLoad !== 'true') {
+          if(Loaders.detailedLoad !== true) {
             Loaders.stopLoadingText();
           }
           else {
@@ -105,19 +105,19 @@ GLOBAL.pauseShow = function()
 GLOBAL.startAudio = function()
 {
   var audioTrack = document.getElementById('AudioTrack');
-  if(audioTrack !== null) { audioTrack.play();  }
+  if(audioTrack) { audioTrack.play();  }
 };
 
 GLOBAL.pauseAudio = function()
 {
   var audioTrack = document.getElementById('AudioTrack');
-  if(audioTrack !== null) { audioTrack.pause();  }  
+  if(audioTrack) { audioTrack.pause();  }  
 };
 
 GLOBAL.resetAudio = function()
 {
   var audioTrack = document.getElementById('AudioTrack');
-  if(audioTrack !== null) { audioTrack.currentTime = 0;  }
+  if(audioTrack) { audioTrack.currentTime = 0;  }
 };
 
 // recursive function that plays the stack in sequence starting with the index supplied
@@ -126,7 +126,7 @@ GLOBAL.playNextAction = function(index)
   var action = GLOBAL.actionQueue[index];
 
   // finished playing, no more actions, reset the index to 0
-  if(action === null) { GLOBAL.curIndex = 0; return; }
+  if(!action) { GLOBAL.curIndex = 0; return; }
   
   GLOBAL.curIndex = index;
   
@@ -155,4 +155,4 @@ GLOBAL.playStack = function()
 
 
 })();
-/* end special-slideshow-actions */
+/* end gallery script */
