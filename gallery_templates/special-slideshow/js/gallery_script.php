@@ -27,16 +27,16 @@ $(document).ready(
       .mouseout( function() { this.style.cursor = 'default'; } )
       .click( Controls.toggleControls );
     $('#ControlsPause')
-      .mouseover( (function(self) { self.css( { cursor:'pointer' } ); })( $('#ControlsPause') ) )
-      .mouseout(  (function(self) { self.css( { cursor:'default' } ); })( $('#ControlsPause') ) )
+      .mouseover( (function(self) { return function() { self.css( { cursor:'pointer' } ); } })( $('#ControlsPause') ) )
+      .mouseout(  (function(self) { return function() { self.css( { cursor:'default' } ); } })( $('#ControlsPause') ) )
       .click( (function() { Controls.pauseShow(); }) );
     $('#ControlsContinue')
-      .mouseover( (function(self) { self.css( { cursor:'pointer' } ); })( $('#ControlsContinue') ) )
-      .mouseout(  (function(self) { self.css( { cursor:'default' } ); })( $('#ControlsContinue') ) )
+      .mouseover( (function(self) { return function() { self.css( { cursor:'pointer' } ); } })( $('#ControlsContinue') ) )
+      .mouseout(  (function(self) { return function() { self.css( { cursor:'default' } ); } })( $('#ControlsContinue') ) )
       .click( (function() { Controls.continueShow(); }) );
     $('#ControlsRestart')
-      .mouseover( (function(self) { self.css( { cursor:'pointer' } ); })( $('#ControlsRestart') ) )
-      .mouseout(  (function(self) { self.css( { cursor:'default' } ); })( $('#ControlsRestart') ) )
+      .mouseover( (function(self) { return function() { self.css( { cursor:'pointer' } ); } })( $('#ControlsRestart') ) )
+      .mouseout(  (function(self) { return function() { self.css( { cursor:'default' } ); } })( $('#ControlsRestart') ) )
       .click( (function() { Controls.startShow(); }) );
       
     Controls.hideControls();
