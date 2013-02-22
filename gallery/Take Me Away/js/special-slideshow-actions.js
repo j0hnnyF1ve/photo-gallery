@@ -73,25 +73,25 @@ if(GLOBAL.actionQueue !== null)
 
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 500 );
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
-  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 3500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1000 );
   
   helper_pushToQueue(
     helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 3500 );
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 1500 );
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
-  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 3500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1000 );
   
   helper_pushToQueue(
     helper_createTextFadeAnimation('Sample Delicious Foods'), 3500 );
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 1500 );
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
-  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 3500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1000 );
   
   helper_pushToQueue(
     helper_createText('Come to Asia!'), 3500 );
   helper_pushToQueue( helper_createSingleFadeInAnimation(), 1500 );
-  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1500 );
-  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1500 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1000 );
   
   
   // fade out music and stop it

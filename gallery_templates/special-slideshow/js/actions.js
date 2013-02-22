@@ -121,7 +121,7 @@ Actions.createSingleFadeIn = function(params)
   imageObject.x = ( params.x ? params.x : $(window).width() / 2) - imageObject.image.width() / 2,
   imageObject.y = ( params.y ? params.y : $(window).height() / 2) - imageObject.image.height() / 2;
 
-  imageObject.fadeIn(1000);
+  imageObject.container.fadeIn(1000);
 };
 
 /* createSingleFadeInAndOut
