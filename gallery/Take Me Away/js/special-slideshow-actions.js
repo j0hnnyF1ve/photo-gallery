@@ -14,7 +14,7 @@ if(GLOBAL.actionQueue !== null)
   }
 
   var helper_createSingleFadeInAnimation = function(curX, curY) {
-    return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
+    return function() { Actions.createSingleFadeIn( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
   var helper_createSingleFadeInAndOutAnimation = function(curX, curY) {
