@@ -29,12 +29,13 @@ Controls_Audio.setVolume = function(volume)
 
 Controls_Audio.increaseVolume = function(increment)
 {
-  if(Controls_Audio.audioTrack.volume <= 100) { Controls_Audio.audioTrack.volume += increment; }
+  Controls_Audio.audioTrack.volume = (Controls_Audio.audioTrack.volume + increment <= 100) ? Controls_Audio.audioTrack.volume + increment : 100;
+  
 }
 
 Controls_Audio.decreaseVolume = function(increment)
 {
-  if(Controls_Audio.audioTrack.volume >= 0) { Controls_Audio.audioTrack.volume -= increment; }
+  Controls_Audio.audioTrack.volume = (Controls_Audio.audioTrack.volume - increment >= 0) ? Controls_Audio.audioTrack.volume - increment : 0;
 }
 
 Controls_Audio.resetAudio = function()
