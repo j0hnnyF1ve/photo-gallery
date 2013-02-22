@@ -15,11 +15,14 @@ $audioFileHtml = '';
 $scriptHtml = '';
 $imageScriptString = '';
 
+$showAudioControls = false;
+
 
 // get the list of all galleries
 $galleryList = helper_trimFileList( scandir($galleryRoot), $galleryRoot );
 
 $currentGalleryName = isset($_GET['currentGallery']) ? $_GET['currentGallery'] : $galleryList[0];
+$showAudioControls = isset($_GET['showAudioControls']) ? true : false;
 if(!empty($currentGalleryList) ) 
 {
   echo 'The gallery you selected was not found. ';
@@ -48,11 +51,11 @@ if(is_dir($currentGalleryDir . '/audio') )
   // generate the Audio Html
   if(!empty($audioFileList))
   {
-    if($debug === true) {
+    if($showAudioControls === true) {
       $audioFileHtml .= helper_addSpaces('<audio id="AudioTrack" controls="controls">', 6)  . chr(10);
     }
     else {
-      $audioFileHtml .= helper_addSpaces('<audio id="AudioTrack" controls="controls">', 6)  . chr(10);
+      $audioFileHtml .= helper_addSpaces('<audio id="AudioTrack" >', 6)  . chr(10);
     }
 
     foreach($audioFileList as $audioFile)
