@@ -11,32 +11,36 @@ if(!GLOBAL) { GLOBAL = {}; }
 "use strict";
 
 GLOBAL.curInterval = null,  // variable used to store the GLOBAL interval Id returned from setInterval
+GLOBAL.defaultMouseoverAction = function(self) {
+  return function() { self.css( { cursor:'pointer' } ); };
+}
+GLOBAL.defaultMouseoutAction = function(self) {
+  return function() { self.css( { cursor:'default' } ); };
+}
   
 // initialize the show, showing the load screen 
 $(document).ready(
   function()
   {
-    
-    
     $('#LoadScreen').show();
     $('#Controls')
       .show()
       .css( { left: $(window).width() / 2 - $('#Controls').width() / 2 } );
     $('#ControlsTab')
-      .mouseover( function() { this.style.cursor = 'pointer'; } )
-      .mouseout( function() { this.style.cursor = 'default'; } )
+      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsTab') ) )
+      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsTab') ) )
       .click( Controls.toggleControls );
     $('#ControlsPause')
-      .mouseover( (function(self) { return function() { self.css( { cursor:'pointer' } ); } })( $('#ControlsPause') ) )
-      .mouseout(  (function(self) { return function() { self.css( { cursor:'default' } ); } })( $('#ControlsPause') ) )
+      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsPause') ) )
+      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsPause') ) )
       .click( (function() { Controls.pauseShow(); }) );
     $('#ControlsContinue')
-      .mouseover( (function(self) { return function() { self.css( { cursor:'pointer' } ); } })( $('#ControlsContinue') ) )
-      .mouseout(  (function(self) { return function() { self.css( { cursor:'default' } ); } })( $('#ControlsContinue') ) )
+      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsContinue') ) )
+      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsContinue') ) )
       .click( (function() { Controls.continueShow(); }) );
     $('#ControlsRestart')
-      .mouseover( (function(self) { return function() { self.css( { cursor:'pointer' } ); } })( $('#ControlsRestart') ) )
-      .mouseout(  (function(self) { return function() { self.css( { cursor:'default' } ); } })( $('#ControlsRestart') ) )
+      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsRestart') ) )
+      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsRestart') ) )
       .click( (function() { Controls.startShow(); }) );
       
     Controls.hideControls();
