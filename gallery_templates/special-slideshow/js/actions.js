@@ -127,7 +127,7 @@ Actions.createSingleFade = function(params)
     }
   };
   
-  setTimeout( helper_createSingleFade(params), i * params.interval );
+  setTimeout( helper_createSingleFade(params), params.interval );
 };
 
 /* createRandomFades
