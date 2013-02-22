@@ -9,15 +9,19 @@ $(window).ready( function() { Controls_Audio.audioTrack = document.getElementByI
 
 Controls_Audio.audioOn = true;
 
-Controls_Audio.turnAudioOn = function() { Controls_Audio.audioOn = true; Controls_Audio.startAudio(); }
-Controls_Audio.turnAudioOff = function() { Controls_Audio.pauseAudio(); Controls_Audio.audioOn = false;  }
-Controls_Audio.toggleAudio = function(buttonObj) {
+Controls_Audio.turnAudioOn = function() { Controls_Audio.audioOn = true;  }
+Controls_Audio.turnAudioOff = function() {  Controls_Audio.audioOn = false;  }
+
+//
+Controls_Audio.toggleAudioHandler = function(buttonObj) {
   if(Controls_Audio.audioOn === true) {
     Controls_Audio.turnAudioOff();
+    Controls_Audio.pauseAudio();    
     if(buttonObj) { $(buttonObj).html('Audio Off'); }
   }
   else {
     Controls_Audio.turnAudioOn();
+    Controls_Audio.startAudio();    
     if(buttonObj) { $(buttonObj).html('Audio On'); }
   }
 }

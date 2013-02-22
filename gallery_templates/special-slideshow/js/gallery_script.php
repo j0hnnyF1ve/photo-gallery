@@ -11,10 +11,10 @@ if(!GLOBAL) { GLOBAL = {}; }
 "use strict";
 
 GLOBAL.curInterval = null,  // variable used to store the GLOBAL interval Id returned from setInterval
-GLOBAL.defaultMouseoverAction = function(self) {
+GLOBAL.defaultMouseoverHandler = function(self) {
   return function() { self.css( { cursor:'pointer' } ); };
 }
-GLOBAL.defaultMouseoutAction = function(self) {
+GLOBAL.defaultMouseoutHandler = function(self) {
   return function() { self.css( { cursor:'default' } ); };
 }
   
@@ -27,25 +27,25 @@ $(document).ready(
       .show()
       .css( { left: $(window).width() / 2 - $('#Controls').width() / 2 } );
     $('#ControlsTab')
-      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsTab') ) )
-      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsTab') ) )
+      .mouseover( GLOBAL.defaultMouseoverHandler( $('#ControlsTab') ) )
+      .mouseout( GLOBAL.defaultMouseoutHandler( $('#ControlsTab') ) )
       .click( Controls.toggleControls );
     $('#ControlsPause')
-      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsPause') ) )
-      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsPause') ) )
+      .mouseover( GLOBAL.defaultMouseoverHandler( $('#ControlsPause') ) )
+      .mouseout( GLOBAL.defaultMouseoutHandler( $('#ControlsPause') ) )
       .click( (function() { Controls.pauseShow(); }) );
     $('#ControlsContinue')
-      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsContinue') ) )
-      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsContinue') ) )
+      .mouseover( GLOBAL.defaultMouseoverHandler( $('#ControlsContinue') ) )
+      .mouseout( GLOBAL.defaultMouseoutHandler( $('#ControlsContinue') ) )
       .click( (function() { Controls.continueShow(); }) );
     $('#ControlsRestart')
-      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsRestart') ) )
-      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsRestart') ) )
+      .mouseover( GLOBAL.defaultMouseoverHandler( $('#ControlsRestart') ) )
+      .mouseout( GLOBAL.defaultMouseoutHandler( $('#ControlsRestart') ) )
       .click( (function() { Controls.startShow(); }) );
     $('#ControlsAudioToggle')
-      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsAudioToggle') ) )
-      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsAudioToggle') ) )
-      .click( (function(obj) { return function() { Controls_Audio.toggleAudio(obj); }; })($('#ControlsAudioToggle')) );
+      .mouseover( GLOBAL.defaultMouseoverHandler( $('#ControlsAudioToggle') ) )
+      .mouseout( GLOBAL.defaultMouseoutHandler( $('#ControlsAudioToggle') ) )
+      .click( (function(obj) { return function() { Controls_Audio.toggleAudioHandler(obj); }; })($('#ControlsAudioToggle')) );
       
     Controls.hideControls();
     
