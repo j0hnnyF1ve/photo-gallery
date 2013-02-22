@@ -93,6 +93,9 @@ if(GLOBAL.actionQueue !== null)
   
   helper_pushToQueue(
     helper_createText('Come to Asia!'), 3500 );
+  helper_pushToQueue( helper_createSingleFadeAnimation(), 1500 );
+  helper_pushToQueue( helper_createSingleFadeAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1500 );
+  helper_pushToQueue( helper_createSingleFadeAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1500 );
   
   
   // fade out music and stop it
