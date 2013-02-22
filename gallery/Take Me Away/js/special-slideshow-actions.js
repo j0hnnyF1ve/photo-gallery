@@ -25,7 +25,7 @@ if(GLOBAL.actionQueue !== null)
         setTimeout( function() { Controls_Audio.increaseVolume(0.05); }, 100 * i);
       }
     },
-    timeout : 500
+    timeout : 0
   } );  
   
   GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 0 } );  
