@@ -10,6 +10,14 @@ var TextActions = {} ;
 (function() {
 "use strict";  
 
+/* createText
+ * function that creates a text object and returns it
+ * 
+ * parameters:
+ * - params
+ *   - text - text to be displayed
+ *   - curZ - z index of the text
+ */
 TextActions.createText = function(params)
 {
   var textId = 'Text' + GLOBAL.objectIndex++;
@@ -25,12 +33,20 @@ TextActions.createText = function(params)
   return textObject;
 };
 
+/* createText
+ * function that creates a text object and returns it
+ * 
+ * parameters:
+ * - params
+ *   - x - x pos to place the CENTER of the text
+ *   - y - y pos to place the CENTER of the text
+ */
 TextActions.fadeInText = function(params)
 {
   var curText = TextActions.createText( { text: params.text, z: params.z } );
   
-  params.x = (params.x) ? params.x : ($(window).width() / 2) - (curText.width() / 2);
-  params.y = (params.y) ? params.y : ($(window).height() / 2) - (curText.height() / 2);
+  params.x = ( (params.x) ? params.x : ($(window).width() / 2) ) - (curText.width() / 2);
+  params.y = ( (params.y) ? params.y : ($(window).height() / 2) ) - (curText.height() / 2);
   
   curText
     .css( { left: params.x, top: params.y } )
