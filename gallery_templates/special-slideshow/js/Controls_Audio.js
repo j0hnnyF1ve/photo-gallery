@@ -7,13 +7,30 @@ var Controls_Audio = {};
 Controls_Audio.audioTrack = null;
 $(window).ready( function() { Controls_Audio.audioTrack = document.getElementById('AudioTrack'); } );
 
+Controls_Audio.audioOn = true;
+
+Controls_Audio.turnAudioOn = function() { Controls_Audio.audioOn = true; Controls_Audio.startAudio(); }
+Controls_Audio.turnAudioOff = function() { Controls_Audio.audioOn = false; Controls_Audio.pauseAudio(); }
+Controls_Audio.toggleAudio = function(buttonObj) {
+  if(Controls_Audio.audioOn === true) {
+    Controls_Audio.turnAudioOff();
+    if(buttonObj) { $(buttonObj).html('Audio Off'); }
+  }
+  else {
+    Controls_Audio.turnAudioOn();
+    if(buttonObj) { $(buttonObj).html('Audio On'); }
+  }
+}
+
 Controls_Audio.startAudio = function()
 {
+  if(Controls_Audio.audioOn === false) { return; }
   Controls_Audio.audioTrack.play(); 
 };
 
 Controls_Audio.pauseAudio = function()
 {
+  if(Controls_Audio.audioOn === false) { return; }
   Controls_Audio.audioTrack.pause(); 
 };
 
