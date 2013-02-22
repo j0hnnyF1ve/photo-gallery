@@ -7,12 +7,12 @@ $key = array_search('.', $galleryList);
 array_splice($galleryList, $key, 1);
 $key = array_search('..', $galleryList);
 array_splice($galleryList, $key, 1);
-
 if(empty($galleryList))
 {
   echo 'No galleries found.';
   return;
 }
+$galleryList = helper_trimDirList($galleryList, $galleryRoot);
 
 echo '<h1>Photo Gallery List</h1>';
 echo '<ul id="GalleryList">';

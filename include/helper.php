@@ -19,6 +19,21 @@ function helper_trimFileList($fileList, $rootDir = '')
   return $fileList;
 }
 
+function helper_trimDirList($dirList, $rootDir = '')
+{
+  $fullDirPath = (!empty($rootDir)) ? $rootDir . '/' : '';
+  foreach($dirList as $dir)
+  {
+    
+    if(is_dir($fullDirPath . $dir) )
+    {
+      $key = array_search($dir, $dirList);
+      array_splice($dirList, $key, 1);
+    }
+  }
+  return $dirList;
+}
+
 /*
  * helper_addSpaces
  * takes some text, and adds the specified number of spaces to the beginning of it

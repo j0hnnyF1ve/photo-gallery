@@ -17,10 +17,31 @@ Controls_Audio.pauseAudio = function()
   Controls_Audio.audioTrack.pause(); 
 };
 
+Controls_Audio.setTime = function(time)
+{
+  Controls_Audio.audioTrack.currentTime = time;
+}
+
+Controls_Audio.setVolume = function(volume)
+{
+  Controls_Audio.audioTrack.volume = volume;
+}
+
+Controls_Audio.increaseVolume = function(increment)
+{
+  Controls_Audio.audioTrack.volume += increment;
+}
+
+Controls_Audio.decreaseVolume = function(increment)
+{
+  Controls_Audio.audioTrack.volume -= increment;
+}
+
 Controls_Audio.resetAudio = function()
 {
-  Controls_Audio.audioTrack.currentTime = 0;
+  Controls_Audio.setTime(0);
 };
+
 
 })();
 /* End Controls Definition */
