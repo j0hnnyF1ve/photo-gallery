@@ -35,6 +35,7 @@ if(GLOBAL.actionQueue !== null)
       {
         setTimeout( function() { Controls_Audio.decreaseVolume(0.025); }, 100 * i);
       }
+      setTimeout( function() { Controls_Audio.pauseAudio(); }, 4100)
     },
     timeout : 3500
   } );   
