@@ -27,7 +27,7 @@ TextActions.createText = function(params)
 
 TextActions.fadeInText = function(params)
 {
-  var curText = TextActions.createText( { text: param.text, z: params.z } );
+  var curText = TextActions.createText( { text: params.text, z: params.z } );
   
   params.x = (params.x) ? params.x : ($(window).width() / 2) - (curText.width() / 2);
   params.y = (params.y) ? params.y : ($(window).height() / 2) - (curText.height() / 2);
