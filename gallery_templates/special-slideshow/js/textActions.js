@@ -25,6 +25,20 @@ TextActions.createText = function(params)
   return textObject;
 };
 
+TextActions.fadeInText = function(params)
+{
+  var curText = TextActions.createText( { text: param.text, z: params.z } );
+  
+  params.x = (params.x) ? params.x : ($(window).width() / 2) - (curText.width() / 2);
+  params.y = (params.y) ? params.y : ($(window).height() / 2) - (curText.height() / 2);
+  
+  curText
+    .css( { left: params.x, top: params.y } )
+    .fadeIn(1000)
+    .delay(2000)
+    .fadeOut(500, (function(myText) { var textToRemove = myText; var f = function() { textToRemove.remove(); }; return f; })(curText) );
+}
+
 TextActions.moveText = function(params)
 {
   if(!params) { return; }

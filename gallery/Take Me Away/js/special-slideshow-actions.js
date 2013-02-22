@@ -14,7 +14,8 @@ if(GLOBAL.actionQueue !== null)
   };
   
   GLOBAL.actionQueue.push({
-    perform : function() {
+    perform : function() { TextActions.fadeInText( { text: 'Wanna Get Away?', z: 1000 } );
+/*
       var curText = TextActions.createText( { text: 'Wanna Get Away?', z: 1000 } );
       var windowWidth = $(window).width(), windowHeight = $(window).height();
       var midPointX = windowWidth / 2, midPointY = windowHeight / 2;
@@ -23,6 +24,7 @@ if(GLOBAL.actionQueue !== null)
         .fadeIn(1000)
         .delay(2000)
         .fadeOut(500, (function(myText) { var textToRemove = myText; var f = function() { textToRemove.remove(); }; return f; })(curText) );
+*/
     },
     timeout : 2000
   });  
