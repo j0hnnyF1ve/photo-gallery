@@ -104,6 +104,7 @@ if(!empty($currentGalleryList))
     GLOBAL.maxImgSize = 400;
     Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
     if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
+    Controls_Audio.audioOn = <?php echo isset($_GET['audioOff']) ? "false" : "true"; ?>
   
     // helper function to add images to the queue
     var addImageToQueue = function( params )
@@ -148,6 +149,7 @@ if(!empty($currentGalleryList))
         <button id="ControlsPause">Pause Show</button>
         <button id="ControlsContinue">Continue Show</button>
         <button id="ControlsRestart">Restart Show</button>
+        <button id="ControlsAudioToggle">Audio On</button>
       </div>
     </div>
     <div id="ControlsTab">Controls</div>

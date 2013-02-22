@@ -42,6 +42,10 @@ $(document).ready(
       .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsRestart') ) )
       .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsRestart') ) )
       .click( (function() { Controls.startShow(); }) );
+    $('#ControlsAudioToggle')
+      .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsAudioToggle') ) )
+      .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsAudioToggle') ) )
+      .click( (function(obj) { return function() { ControlsAudio.toggleAudio(obj); }; })($('#ControlsAudioToggle')) );
       
     Controls.hideControls();
     
