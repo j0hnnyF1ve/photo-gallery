@@ -120,6 +120,8 @@ Actions.createSingleFade = function(params)
     return function() {
       var imageParams = Actions.createImage();
       
+      console.log(paramsPassedIn);
+      
       imageParams.x = ( (!paramsPassedIn.x) ? paramsPassedIn.x : $(window).width() / 2) - imageParams.image.width() / 2,
       imageParams.y = ( (!paramsPassedIn.y) ? paramsPassedIn.y : $(window).height() / 2) - imageParams.image.height() / 2;
   
