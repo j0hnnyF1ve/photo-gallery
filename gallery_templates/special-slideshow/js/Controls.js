@@ -37,10 +37,12 @@ Controls.hideControls = function()
 
 Controls.startShow = function()
 {
+  
   setTimeout( function() { 
     // reset everything, start over
     Controls_Audio.pauseAudio();
     clearTimeout(Controls.curTimeout);
+    Controls.clearDisplay();
     Controls.playNextAction(0);
   }, 1000);
 };

@@ -76,7 +76,7 @@ if(GLOBAL.actionQueue !== null)
   helper_pushToQueue(
     helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 3500 );
   // display images
-  helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
+  helper_pushToQueue( helper_createSingleFadeAnimation(), 1500 );
   for(var i=0; i < 4; i++)
   {
     helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
@@ -85,7 +85,7 @@ if(GLOBAL.actionQueue !== null)
   helper_pushToQueue(
     helper_createTextFadeAnimation('Sample Delicious Foods'), 3500 );
   // display images
-  helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
+  helper_pushToQueue( helper_createSingleFadeAnimation(), 1500 );
   for(var i=0; i < 4; i++)
   {
     helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
