@@ -70,30 +70,22 @@ if(GLOBAL.actionQueue !== null)
     helper_createTextFadeAnimation('Wanna Get Away?'), 2000 );
   // fade in music
   helper_pushToQueue( helper_fadeInMusicHandler, 2000);
-  // display images
-  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 500 );
-  for(var i=0; i < 4; i++)
-  {
-    helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( helper_generateRandomX() ), 3500 );
-  }
 
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 3500 );
+  
   helper_pushToQueue(
     helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 3500 );
-  // display images
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 1500 );
-  for(var i=0; i < 4; i++)
-  {
-    helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( helper_generateRandomX() ), 3500 );
-  }
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 3500 );
   
   helper_pushToQueue(
     helper_createTextFadeAnimation('Sample Delicious Foods'), 3500 );
-  // display images
   helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 1500 );
-  for(var i=0; i < 4; i++)
-  {
-    helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( helper_generateRandomX() ), 3500 );
-  }
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 3500 );
   
   helper_pushToQueue(
     helper_createText('Come to Asia!'), 3500 );
