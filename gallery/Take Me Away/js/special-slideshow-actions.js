@@ -74,7 +74,7 @@ if(GLOBAL.actionQueue !== null)
   }
 
   helper_pushToQueue(
-    helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 2000 );
+    helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 3500 );
   // display images
   helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
   for(var i=0; i < 4; i++)
@@ -83,7 +83,7 @@ if(GLOBAL.actionQueue !== null)
   }
   
   helper_pushToQueue(
-    helper_createTextFadeAnimation('Sample Delicious Foods'), 2000 );
+    helper_createTextFadeAnimation('Sample Delicious Foods'), 3500 );
   // display images
   helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
   for(var i=0; i < 4; i++)
@@ -92,7 +92,7 @@ if(GLOBAL.actionQueue !== null)
   }
   
   helper_pushToQueue(
-    helper_createText('Come to Asia!'), 2000 );
+    helper_createText('Come to Asia!'), 3500 );
   
   
   // fade out music and stop it
