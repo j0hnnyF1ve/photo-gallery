@@ -6,8 +6,8 @@ var Controls_Audio = {};
 // we can change this later to have the audioTrack value be initialized in the application
 Controls_Audio.audioTrack = null;
 
-Controls_Audio.turnAudioOn = function() { Controls_Audio.audioTrack.muted = true;  }
-Controls_Audio.turnAudioOff = function() { Controls_Audio.audioTrack.muted = false;  }
+Controls_Audio.turnAudioOn = function() { Controls_Audio.audioTrack.muted = false;  }
+Controls_Audio.turnAudioOff = function() { Controls_Audio.audioTrack.muted = true;  }
 
 //
 Controls_Audio.toggleAudioHandler = function(buttonObj) {
