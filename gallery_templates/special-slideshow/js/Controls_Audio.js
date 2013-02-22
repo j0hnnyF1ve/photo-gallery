@@ -11,7 +11,7 @@ Controls_Audio.turnAudioOff = function() { Controls_Audio.audioTrack.muted = fal
 
 //
 Controls_Audio.toggleAudioHandler = function(buttonObj) {
-  if(Controls_Audio.audioOn === true) {
+  if(Controls_Audio.audioTrack.muted === false) {
     Controls_Audio.turnAudioOff();
     if(buttonObj) { $(buttonObj).html('Audio Off'); }
   }
