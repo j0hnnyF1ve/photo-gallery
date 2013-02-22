@@ -5,23 +5,18 @@ var Controls_Audio = {};
 
 // we can change this later to have the audioTrack value be initialized in the application
 Controls_Audio.audioTrack = null;
-$(window).ready( function() { Controls_Audio.audioTrack = document.getElementById('AudioTrack'); } );
 
-Controls_Audio.audioOn = true;
-
-Controls_Audio.turnAudioOn = function() { Controls_Audio.audioOn = true;  }
-Controls_Audio.turnAudioOff = function() {  Controls_Audio.audioOn = false;  }
+Controls_Audio.turnAudioOn = function() { Controls_Audio.audioTrack.muted = true;  }
+Controls_Audio.turnAudioOff = function() { Controls_Audio.audioTrack.muted = false;  }
 
 //
 Controls_Audio.toggleAudioHandler = function(buttonObj) {
   if(Controls_Audio.audioOn === true) {
     Controls_Audio.turnAudioOff();
-    Controls_Audio.pauseAudio();    
     if(buttonObj) { $(buttonObj).html('Audio Off'); }
   }
   else {
     Controls_Audio.turnAudioOn();
-    Controls_Audio.startAudio();    
     if(buttonObj) { $(buttonObj).html('Audio On'); }
   }
 }

@@ -104,7 +104,14 @@ if(!empty($currentGalleryList))
     GLOBAL.maxImgSize = 400;
     Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
     if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
-    Controls_Audio.audioOn = <?php echo isset($_GET['audioOff']) ? "false" : "true"; ?>
+    $(window).ready(
+      function()
+      {
+        Controls_Audio.audioTrack = document.getElementById('AudioTrack'); }
+        Controls_Audio.audioTrack.muted = <?php echo isset($_GET['audioOff']) ? "true" : "false"; ?>
+      }
+    );
+    
   
     // helper function to add images to the queue
     var addImageToQueue = function( params )
