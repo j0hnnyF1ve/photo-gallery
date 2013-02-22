@@ -23,10 +23,21 @@ if(GLOBAL.actionQueue !== null)
   } );  
   
   GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 500 } );  
-  for(var i=0; i < 29; i++)
+  for(var i=0; i < 5; i++)
   {
     GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 3500 } );  
   }
+  
+  GLOBAL.actionQueue.push( {
+    perform : function()
+    {
+      for(var i=0; i < 40; i++)
+      {
+        setTimeout( function() { Controls_Audio.decreaseVolume(0.025); }, 100 * i);
+      }
+    },
+    timeout : 3500
+  } );   
 }
 
 })();
