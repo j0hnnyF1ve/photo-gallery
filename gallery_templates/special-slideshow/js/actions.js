@@ -25,14 +25,15 @@ var Actions = {};
 Actions.createImage = function(params)
 {
   var imageIndex, curImage;
-  if( !params || (params && !params.srcImage) )
+//  if( !params || (params && !params.srcImage) )
+  if(params && params.srcImage) 
   {
-    imageIndex = (params && params.imageIndex) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
-    curImage = GLOBAL.images[imageIndex];
+    curImage = params.srcImage;
   }
   else
   {
-    curImage = params.srcImage;
+    imageIndex = (params && params.imageIndex) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
+    curImage = GLOBAL.images[imageIndex];
   }
   params.containerClass = (params.containerClass) ? params.containerClass : 'imageConatiner'
 
