@@ -38,9 +38,6 @@ Controls.hideControls = function()
 Controls.startShow = function()
 {
   setTimeout( function() { 
-    // start the audio
-    Controls_Audio.resetAudio(); Controls_Audio.startAudio();
-    
     // reset everything, start over
     clearTimeout(Controls.curTimeout);
     Controls.playNextAction(0);

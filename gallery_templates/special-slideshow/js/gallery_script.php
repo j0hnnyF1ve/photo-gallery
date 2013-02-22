@@ -26,7 +26,7 @@ $(document).ready(
       .click( Controls.toggleControls );
     $('#ControlsPause').click( (function() { Controls.pauseShow(); }) );
     $('#ControlsContinue').click( (function() { Controls.continueShow(); }) );
-    $('#ControlsRestart').click( (function() { Controls.restartShow(); }) );
+    $('#ControlsRestart').click( (function() { Controls.startShow(); }) );
       
     Controls.hideControls();
     

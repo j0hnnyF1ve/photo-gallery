@@ -11,6 +11,7 @@ if(GLOBAL.actionQueue !== null)
   GLOBAL.actionQueue.push( {
     perform : function()
     {
+      Controls_Audio.setTime(77);
       Controls_Audio.setVolume(0);
       for(var i=0; i < 20; i++)
       {
@@ -21,12 +22,10 @@ if(GLOBAL.actionQueue !== null)
   } );  
   
   GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 500 } );  
-/*
   for(var i=0; i < 29; i++)
   {
     GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 3500 } );  
   }
-*/  
 }
 
 })();
