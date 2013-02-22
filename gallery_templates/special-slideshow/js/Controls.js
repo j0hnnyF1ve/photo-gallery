@@ -39,7 +39,7 @@ Controls.startShow = function()
 {
   setTimeout( function() { 
     // reset everything, start over
-    Controls_Audio.stopAudio();
+    Controls_Audio.pauseAudio();
     clearTimeout(Controls.curTimeout);
     Controls.playNextAction(0);
   }, 1000);
