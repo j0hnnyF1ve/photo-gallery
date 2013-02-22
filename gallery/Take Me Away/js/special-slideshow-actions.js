@@ -13,12 +13,12 @@ if(GLOBAL.actionQueue !== null)
     return (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);    
   }
 
-  var helper_createSingleFadeInAnimation = function(curX, curY) {
-    return function() { Actions.createSingleFadeIn( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
+  var helper_createSingleFadeInAnimation = function(curX, curY, curZ) {
+    return function() { Actions.createSingleFadeIn( { x: curX, y: curY, z: curZ, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
-  var helper_createSingleFadeInAndOutAnimation = function(curX, curY) {
-    return function() { Actions.createSingleFadeInAndOut( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
+  var helper_createSingleFadeInAndOutAnimation = function(curX, curY, curZ) {
+    return function() { Actions.createSingleFadeInAndOut( { x: curX, y: curY, z: curZ, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
   var helper_createText = function(curText)
@@ -90,8 +90,8 @@ if(GLOBAL.actionQueue !== null)
   helper_pushToQueue(
     helper_createText('Come to Asia!'), 3500 );
   helper_pushToQueue( helper_createSingleFadeInAnimation(), 1500 );
-  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1000 );
-  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1000 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) - 300, ($(window).height() / 2) + 75), 1000 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) + 300, ($(window).height() / 2) + 75), 1000 );
   
   
   // fade out music and stop it

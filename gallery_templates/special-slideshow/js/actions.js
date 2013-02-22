@@ -120,9 +120,10 @@ Actions.createSingleFadeIn = function(params)
   
   imageObject.x = ( params.x ? params.x : $(window).width() / 2) - imageObject.image.width() / 2,
   imageObject.y = ( params.y ? params.y : $(window).height() / 2) - imageObject.image.height() / 2;
+  imageObject.z = ( params.z ? params.z : 0 );
 
   imageObject.container
-    .css( {left: imageObject.x, top: imageObject.y } )
+    .css( {left: imageObject.x, top: imageObject.y, zIndex: imageObject.z } )
     .fadeIn(1000);
 };
 
@@ -145,6 +146,7 @@ Actions.createSingleFadeInAndOut = function(params)
   
   imageObject.x = ( params.x ? params.x : $(window).width() / 2) - imageObject.image.width() / 2,
   imageObject.y = ( params.y ? params.y : $(window).height() / 2) - imageObject.image.height() / 2;
+  imageObject.z = ( params.z ? params.z : 0 );
 
   Animations.fadeIn(imageObject);
 };
