@@ -29,8 +29,7 @@ Controls_Audio.setVolume = function(volume)
 
 Controls_Audio.increaseVolume = function(increment)
 {
-  Controls_Audio.audioTrack.volume = (Controls_Audio.audioTrack.volume + increment <= 100) ? Controls_Audio.audioTrack.volume + increment : 100;
-  
+  Controls_Audio.audioTrack.volume = (Controls_Audio.audioTrack.volume + increment <= 1) ? Controls_Audio.audioTrack.volume + increment : 1;
 }
 
 Controls_Audio.decreaseVolume = function(increment)
