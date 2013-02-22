@@ -16,6 +16,8 @@ GLOBAL.curInterval = null,  // variable used to store the GLOBAL interval Id ret
 $(document).ready(
   function()
   {
+    
+    
     $('#LoadScreen').show();
     $('#Controls')
       .show()
@@ -24,9 +26,18 @@ $(document).ready(
       .mouseover( function() { this.style.cursor = 'pointer'; } )
       .mouseout( function() { this.style.cursor = 'default'; } )
       .click( Controls.toggleControls );
-    $('#ControlsPause').click( (function() { Controls.pauseShow(); }) );
-    $('#ControlsContinue').click( (function() { Controls.continueShow(); }) );
-    $('#ControlsRestart').click( (function() { Controls.startShow(); }) );
+    $('#ControlsPause')
+      .mouseover( (function(self) { self.css( { cursor:'pointer' } ); })( $('#ControlsPause') ) )
+      .mouseout(  (function(self) { self.css( { cursor:'default' } ); })( $('#ControlsPause') ) )
+      .click( (function() { Controls.pauseShow(); }) );
+    $('#ControlsContinue')
+      .mouseover( (function(self) { self.css( { cursor:'pointer' } ); })( $('#ControlsContinue') ) )
+      .mouseout(  (function(self) { self.css( { cursor:'default' } ); })( $('#ControlsContinue') ) )
+      .click( (function() { Controls.continueShow(); }) );
+    $('#ControlsRestart')
+      .mouseover( (function(self) { self.css( { cursor:'pointer' } ); })( $('#ControlsRestart') ) )
+      .mouseout(  (function(self) { self.css( { cursor:'default' } ); })( $('#ControlsRestart') ) )
+      .click( (function() { Controls.startShow(); }) );
       
     Controls.hideControls();
     
