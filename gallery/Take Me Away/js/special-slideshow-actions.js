@@ -17,6 +17,19 @@ if(GLOBAL.actionQueue !== null)
     return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
+  var helper_createText = function(curText)
+  {
+    return function() {
+      var curTextObj = TextActions.createText( { text: curText, z: 1000 } );
+      $(curTextObj)
+        .css( {
+          left: ($(window).width() / 2) - (curText.width() / 2),
+          top: ($(window).height() / 2) - (curText.height() / 2)
+        } )
+        .fadeIn(1000)
+    }
+  }
+  
   var helper_createTextFadeAnimation = function(curText) {
     return function() { TextActions.fadeInText( { text: curText, z: 1000 } ); }
   };
@@ -77,6 +90,10 @@ if(GLOBAL.actionQueue !== null)
   {
     helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
   }
+  
+  helper_pushToQueue(
+    helper_createText('Come to Asia!'), 2000 );
+  
   
   // fade out music and stop it
   helper_pushToQueue(helper_fadeOutMusicHandler, 3500);

@@ -59,6 +59,12 @@ Controls.pauseShow = function()
   clearTimeout(Controls.curTimeout);
 };
 
+// clear display of normal objects
+Controls.clearDisplay = function()
+{
+  $('#Content').children('div[id!=Controls]').remove();
+}
+
 // recursive function that plays the stack in sequence starting with the index supplied
 Controls.playNextAction = function(index)
 {
