@@ -4,66 +4,82 @@
 
 if(GLOBAL.actionQueue !== null)
 {
-  var randX; // temporary random x value
+  /* Helper functions to do different common operations*/
   var helper_createRandomFadeAnimations = function() {
     Actions.createRandomFades(1, 3000);
   };
 
+  var helper_generateRandomX = function() {
+    return (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);    
+  }
+  
   var helper_createSingleFadeAnimation = function(curX, curY) {
     return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
-  GLOBAL.actionQueue.push({
-    perform : function() { TextActions.fadeInText( { text: 'Wanna Get Away?', z: 1000 } );
-/*
-      var curText = TextActions.createText( { text: 'Wanna Get Away?', z: 1000 } );
-      var windowWidth = $(window).width(), windowHeight = $(window).height();
-      var midPointX = windowWidth / 2, midPointY = windowHeight / 2;
-      curText
-        .css( { left: midPointX - (curText.width() / 2), top: midPointY - curText.height()  } )
-        .fadeIn(1000)
-        .delay(2000)
-        .fadeOut(500, (function(myText) { var textToRemove = myText; var f = function() { textToRemove.remove(); }; return f; })(curText) );
-*/
-    },
-    timeout : 2000
-  });  
+  var helper_createTextFadeAnimation = function(curText) {
+    return function() { TextActions.fadeInText( { text: curText, z: 1000 } ); }
+  };
   
-  // fade in music
-  GLOBAL.actionQueue.push( {
-    perform : function()
-    {
-      Controls_Audio.setTime(77);
-      Controls_Audio.setVolume(0);
-      Controls_Audio.startAudio();
-      for(var i=0; i < 20; i++)
-      {
-        setTimeout( function() { Controls_Audio.increaseVolume(0.05); }, 100 * i);
-      }
-    },
-    timeout : 2000
-  } );  
-  
-  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation(), timeout : 500 } );  
-  
-  for(var i=0; i < 5; i++)
+  var helper_fadeInMusicHandler = function()
   {
-    randX = (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);
-    GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation(randX, null), timeout : 3500 } );  
+    Controls_Audio.setTime(77);
+    Controls_Audio.setVolume(0);
+    Controls_Audio.startAudio();
+    for(var i=0; i < 20; i++)
+    {
+      setTimeout( function() { Controls_Audio.increaseVolume(0.05); }, 100 * i);
+    }
+  };
+  
+  var helper_fadeOutMusicHandler = function()
+  {
+    for(var i=0; i < 40; i++)
+    {
+      setTimeout( function() { Controls_Audio.decreaseVolume(0.025); }, 100 * i);
+    }
+    setTimeout( function() { Controls_Audio.pauseAudio(); }, 4100)
+  };
+  
+  var helper_pushToQueue = function(actionToPerform, curTimeout)
+  {
+    GLOBAL.actionQueue.push({ perform : actionToPerform, timeout : curTimeout });  
+  };
+
+  
+  
+  /* SET UP THE QUEUE */
+  helper_pushToQueue(
+    helper_createTextFadeAnimation('Wanna Get Away?'), 2000 );
+  // fade in music
+  helper_pushToQueue( helper_fadeInMusicHandler, 2000);
+  // display images
+  helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
+  for(var i=0; i < 4; i++)
+  {
+    helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
+  }
+
+  helper_pushToQueue(
+    helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 2000 );
+  // display images
+  helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
+  for(var i=0; i < 4; i++)
+  {
+    helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
+  }
+  
+  helper_pushToQueue(
+    helper_createTextFadeAnimation('Sample Delicious Foods'), 2000 );
+  // display images
+  helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
+  for(var i=0; i < 4; i++)
+  {
+    helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
   }
   
   // fade out music and stop it
-  GLOBAL.actionQueue.push( {
-    perform : function()
-    {
-      for(var i=0; i < 40; i++)
-      {
-        setTimeout( function() { Controls_Audio.decreaseVolume(0.025); }, 100 * i);
-      }
-      setTimeout( function() { Controls_Audio.pauseAudio(); }, 4100)
-    },
-    timeout : 3500
-  } );   
+  helper_pushToQueue(helper_fadeOutMusicHandler, 3500);
 }
 
 })();
