@@ -28,7 +28,7 @@ if(GLOBAL.actionQueue !== null)
     timeout : 500
   } );  
   
-  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 500 } );  
+  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 0 } );  
   for(var i=0; i < 5; i++)
   {
     randX = (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);
