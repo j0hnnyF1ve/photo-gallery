@@ -30,7 +30,6 @@ Controls_Audio.startAudio = function()
 
 Controls_Audio.pauseAudio = function()
 {
-  if(Controls_Audio.audioOn === false) { return; }
   Controls_Audio.audioTrack.pause(); 
 };
 
