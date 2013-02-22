@@ -24,17 +24,17 @@ Controls_Audio.setTime = function(time)
 
 Controls_Audio.setVolume = function(volume)
 {
-  Controls_Audio.audioTrack.volume = volume;
+  if(volume >= 0 && volume <= 100) { Controls_Audio.audioTrack.volume = volume; }
 }
 
 Controls_Audio.increaseVolume = function(increment)
 {
-  Controls_Audio.audioTrack.volume += increment;
+  if(volume <= 100) { Controls_Audio.audioTrack.volume += increment; }
 }
 
 Controls_Audio.decreaseVolume = function(increment)
 {
-  Controls_Audio.audioTrack.volume -= increment;
+  if(volume >= 0) { Controls_Audio.audioTrack.volume -= increment; }
 }
 
 Controls_Audio.resetAudio = function()
