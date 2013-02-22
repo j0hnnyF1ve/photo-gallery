@@ -66,7 +66,7 @@ body {
     color: #505050;
 }
 
-.imageContainer {
+.imageContainer, .polaroidImageContainer {
     position: absolute;
     display: none;
     text-align: center;
@@ -77,7 +77,7 @@ body {
     padding-bottom: 10px;
 }
 
-.image {
+.image, .polaroidImageContainer .image {
 /*    
     border-top: solid 10px #fff;
     border-left: solid 10px #fff;
@@ -87,10 +87,42 @@ body {
 */
 }
 
-.imageCaption {
+.imageCaption, .polaroidImageContainer .imageCaption {
     display: block;
     margin: 0 0 0 10px;
     color: #000;
+    text-align: center;
+    font: 900 22px 'CalligraffitiRegular';
+    letter-spacing: -1.5px;
+}
+
+.postcardImageContainer {
+    position: absolute;
+    display: none;
+    text-align: center;
+    background-color: #fff;
+    border-top: solid 10px #fff;
+    border-left: solid 10px #fff;
+    border-right: solid 10px #fff;
+    padding-bottom: 10px;
+}
+
+.postcardImageContainer .image {
+/*    
+    border-top: solid 10px #fff;
+    border-left: solid 10px #fff;
+    border-right: solid 10px #fff;
+
+    border: solid 1px #000;
+*/
+}
+
+.postcardImageContainer .imageCaption {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px; 
+    color: yellow;
     text-align: center;
     font: 900 22px 'CalligraffitiRegular';
     letter-spacing: -1.5px;

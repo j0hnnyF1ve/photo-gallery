@@ -34,6 +34,7 @@ Actions.createImage = function(params)
   {
     curImage = params.srcImage;
   }
+  params.containerClass = (params.containerClass) ? params.containerClass : 'imageConatiner'
 
   var currentId = GLOBAL.objectIndex++;
   var imageContainerId = 'ImageContainer' + currentId;
@@ -41,7 +42,7 @@ Actions.createImage = function(params)
   var imageCaptionId = 'ImageCaption' + currentId;
     
   $('#Content').append(
-    '<div id="' + imageContainerId + '" class="imageContainer" >' + 
+    '<div id="' + imageContainerId + '" class="' + params.containerClass + '" >' + 
 //      '<img width="500" height="400" id="' + imageId + '" class="image" />' + 
       '<img id="' + imageId + '" class="image" />' +
       '<div id="' + imageCaptionId + '" class="imageCaption" ></div>' +
