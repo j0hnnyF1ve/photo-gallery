@@ -101,13 +101,13 @@ Actions.createSliders = function(numPics, interval)
 };
 
 /* createSingleFadeIn
- * helper function that creates random fade effects for the specified number of images
+ * helper function that creates a fade in effect, and places the image on the given x, y coordinates
  * 
  * parameters:
  * - params
- *   - 
- *   
- * - interval - the time between pics rendered
+ *   - x - place on the x-axis to set the CENTER of the photo
+ *   - y - place on the y-axis to set the CENTER of the photo
+ *   - interval - the time between pics rendered
  */
 Actions.createSingleFade = function(params)
 {
@@ -118,17 +118,29 @@ Actions.createSingleFade = function(params)
   
   var helper_createSingleFade = function(paramsPassedIn) {
     return function() {
-      var curParams = Actions.createImage();
+      var imageParams = Actions.createImage();
       
-      curParams.x = (!paramsPassedIn.x) ? paramsPassedIn.x : $(window).width() / 2  - curParams.image.width() / 2,
-      curParams.y = (!paramsPassedIn.y) ? paramsPassedIn.y : $(window).height() / 2 - curParams.image.height() / 2;
+      imageParams.x = ( (!paramsPassedIn.x) ? paramsPassedIn.x : $(window).width() / 2) - imageParams.image.width() / 2,
+      imageParams.y = ( (!paramsPassedIn.y) ? paramsPassedIn.y : $(window).height() / 2) - imageParams.image.height() / 2;
   
-      Animations.fadeIn(curParams);
+      Animations.fadeIn(imageParams);
     }
   };
   
   setTimeout( helper_createSingleFade(params), params.interval );
 };
+
+
+
+
+
+
+
+
+
+
+
+/* WARNING: Following methods will be deprecated in the future, do not use */
 
 /* createRandomFades
  * helper function that creates random fade effects for the specified number of images

@@ -8,8 +8,8 @@ if(GLOBAL.actionQueue !== null)
     Actions.createRandomFades(1, 3000);
   };
 
-  var helper_createSingleFadeAnimation = function() {
-    Actions.createSingleFade( { interval: 3500 } );
+  var helper_createSingleFadeAnimation = function(curX, curY) {
+    return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500 } ); }
   };
   
   
@@ -24,13 +24,14 @@ if(GLOBAL.actionQueue !== null)
         setTimeout( function() { Controls_Audio.increaseVolume(0.05); }, 100 * i);
       }
     },
-    timeout : 3500
+    timeout : 500
   } );  
   
   GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 500 } );  
   for(var i=0; i < 5; i++)
   {
-    GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 3500 } );  
+    randX = (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);
+    GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation(randX, null), timeout : 3500 } );  
   }
   
   GLOBAL.actionQueue.push( {
