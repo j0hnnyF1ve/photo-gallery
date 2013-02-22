@@ -13,6 +13,7 @@ if(GLOBAL.actionQueue !== null)
     {
       Controls_Audio.setTime(77);
       Controls_Audio.setVolume(0);
+      Controls_Audio.startAudio();
       for(var i=0; i < 20; i++)
       {
         setTimeout( function() { Controls_Audio.increaseVolume(0.05); }, 100 * i);
