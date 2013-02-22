@@ -45,7 +45,7 @@ $(document).ready(
     $('#ControlsAudioToggle')
       .mouseover( GLOBAL.defaultMouseoverAction( $('#ControlsAudioToggle') ) )
       .mouseout( GLOBAL.defaultMouseoutAction( $('#ControlsAudioToggle') ) )
-      .click( (function(obj) { return function() { ControlsAudio.toggleAudio(obj); }; })($('#ControlsAudioToggle')) );
+      .click( (function(obj) { return function() { Controls_Audio.toggleAudio(obj); }; })($('#ControlsAudioToggle')) );
       
     Controls.hideControls();
     
