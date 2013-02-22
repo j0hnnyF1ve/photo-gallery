@@ -10,7 +10,7 @@ $(window).ready( function() { Controls_Audio.audioTrack = document.getElementByI
 Controls_Audio.audioOn = true;
 
 Controls_Audio.turnAudioOn = function() { Controls_Audio.audioOn = true; Controls_Audio.startAudio(); }
-Controls_Audio.turnAudioOff = function() { Controls_Audio.audioOn = false; Controls_Audio.pauseAudio(); }
+Controls_Audio.turnAudioOff = function() { Controls_Audio.pauseAudio(); Controls_Audio.audioOn = false;  }
 Controls_Audio.toggleAudio = function(buttonObj) {
   if(Controls_Audio.audioOn === true) {
     Controls_Audio.turnAudioOff();
