@@ -114,20 +114,13 @@ Actions.createSingleFade = function(params)
   if(!params) { return; }
   if(!params.x) { params.x = null; }
   if(!params.y) { params.y = null; }
-  if(!params.interval || isNaN(params.interval) ) { params.interval = 500; }
+
+  var imageParams = Actions.createImage();
   
-  var helper_createSingleFade = function(paramsPassedIn) {
-    return function() {
-      var imageParams = Actions.createImage();
-      
-      imageParams.x = ( paramsPassedIn.x ? paramsPassedIn.x : $(window).width() / 2) - imageParams.image.width() / 2,
-      imageParams.y = ( paramsPassedIn.y ? paramsPassedIn.y : $(window).height() / 2) - imageParams.image.height() / 2;
-  
-      Animations.fadeIn(imageParams);
-    }
-  };
-  
-  setTimeout( helper_createSingleFade(params), params.interval );
+  imageParams.x = ( params.x ? params.x : $(window).width() / 2) - imageParams.image.width() / 2,
+  imageParams.y = ( params.y ? params.y : $(window).height() / 2) - imageParams.image.height() / 2;
+
+  Animations.fadeIn(imageParams);
 };
 
 

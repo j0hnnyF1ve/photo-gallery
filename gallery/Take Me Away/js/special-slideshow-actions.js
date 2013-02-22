@@ -13,7 +13,7 @@ if(GLOBAL.actionQueue !== null)
     return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500 } ); }
   };
   
-  
+  // fade in music
   GLOBAL.actionQueue.push( {
     perform : function()
     {
@@ -28,13 +28,15 @@ if(GLOBAL.actionQueue !== null)
     timeout : 0
   } );  
   
-  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 0 } );  
+  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 500 } );  
+  
   for(var i=0; i < 5; i++)
   {
     randX = (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);
     GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation(randX, null), timeout : 3500 } );  
   }
   
+  // fade out music and stop it
   GLOBAL.actionQueue.push( {
     perform : function()
     {
