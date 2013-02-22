@@ -4,6 +4,7 @@
 
 if(GLOBAL.actionQueue !== null)
 {
+  var randX; // temporary random x value
   var helper_createRandomFadeAnimations = function() {
     Actions.createRandomFades(1, 3000);
   };
