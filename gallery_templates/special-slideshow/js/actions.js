@@ -125,6 +125,8 @@ Actions.createSingleFade = function(params)
       imageParams.x = ( (!paramsPassedIn.x) ? paramsPassedIn.x : $(window).width() / 2) - imageParams.image.width() / 2,
       imageParams.y = ( (!paramsPassedIn.y) ? paramsPassedIn.y : $(window).height() / 2) - imageParams.image.height() / 2;
   
+  console.log(imageParams);
+  
       Animations.fadeIn(imageParams);
     }
   };
