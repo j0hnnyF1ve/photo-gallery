@@ -12,9 +12,13 @@ if(GLOBAL.actionQueue !== null)
   var helper_generateRandomX = function() {
     return (Math.random() * ($(window).width() / 2) ) + ($(window).width() / 5);    
   }
-  
-  var helper_createSingleFadeAnimation = function(curX, curY) {
+
+  var helper_createSingleFadeInAnimation = function(curX, curY) {
     return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
+  };
+  
+  var helper_createSingleFadeInAndOutAnimation = function(curX, curY) {
+    return function() { Actions.createSingleFadeInAndOut( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
   var helper_createText = function(curText)
@@ -67,35 +71,35 @@ if(GLOBAL.actionQueue !== null)
   // fade in music
   helper_pushToQueue( helper_fadeInMusicHandler, 2000);
   // display images
-  helper_pushToQueue( helper_createSingleFadeAnimation(), 500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 500 );
   for(var i=0; i < 4; i++)
   {
-    helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
+    helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( helper_generateRandomX() ), 3500 );
   }
 
   helper_pushToQueue(
     helper_createTextFadeAnimation('Take a Journey To Amazing Places'), 3500 );
   // display images
-  helper_pushToQueue( helper_createSingleFadeAnimation(), 1500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 1500 );
   for(var i=0; i < 4; i++)
   {
-    helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
+    helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( helper_generateRandomX() ), 3500 );
   }
   
   helper_pushToQueue(
     helper_createTextFadeAnimation('Sample Delicious Foods'), 3500 );
   // display images
-  helper_pushToQueue( helper_createSingleFadeAnimation(), 1500 );
+  helper_pushToQueue( helper_createSingleFadeInAndOutAnimation(), 1500 );
   for(var i=0; i < 4; i++)
   {
-    helper_pushToQueue( helper_createSingleFadeAnimation( helper_generateRandomX() ), 3500 );
+    helper_pushToQueue( helper_createSingleFadeInAndOutAnimation( helper_generateRandomX() ), 3500 );
   }
   
   helper_pushToQueue(
     helper_createText('Come to Asia!'), 3500 );
-  helper_pushToQueue( helper_createSingleFadeAnimation(), 1500 );
-  helper_pushToQueue( helper_createSingleFadeAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1500 );
-  helper_pushToQueue( helper_createSingleFadeAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1500 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation(), 1500 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) - 200, ($(window).height() / 2) + 50), 1500 );
+  helper_pushToQueue( helper_createSingleFadeInAnimation( ($(window).width() / 2) + 200, ($(window).height() / 2) + 50), 1500 );
   
   
   // fade out music and stop it

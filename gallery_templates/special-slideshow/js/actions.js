@@ -110,18 +110,41 @@ Actions.createSliders = function(numPics, interval)
  *   - y - place on the y-axis to set the CENTER of the photo
  *   - interval - the time between pics rendered
  */
-Actions.createSingleFade = function(params)
+Actions.createSingleFadeIn = function(params)
 {
   if(!params) { return; }
   if(!params.x) { params.x = null; }
   if(!params.y) { params.y = null; }
 
-  var imageParams = Actions.createImage(params);
+  var imageObject = Actions.createImage(params);
   
-  imageParams.x = ( params.x ? params.x : $(window).width() / 2) - imageParams.image.width() / 2,
-  imageParams.y = ( params.y ? params.y : $(window).height() / 2) - imageParams.image.height() / 2;
+  imageObject.x = ( params.x ? params.x : $(window).width() / 2) - imageObject.image.width() / 2,
+  imageObject.y = ( params.y ? params.y : $(window).height() / 2) - imageObject.image.height() / 2;
 
-  Animations.fadeIn(imageParams);
+  imageObject.fadeIn(1000);
+};
+
+/* createSingleFadeInAndOut
+ * helper function that creates a fade in effect, and places the image on the given x, y coordinates
+ * 
+ * parameters:
+ * - params
+ *   - x - place on the x-axis to set the CENTER of the photo
+ *   - y - place on the y-axis to set the CENTER of the photo
+ *   - interval - the time between pics rendered
+ */
+Actions.createSingleFadeInAndOut = function(params)
+{
+  if(!params) { return; }
+  if(!params.x) { params.x = null; }
+  if(!params.y) { params.y = null; }
+
+  var imageObject = Actions.createImage(params);
+  
+  imageObject.x = ( params.x ? params.x : $(window).width() / 2) - imageObject.image.width() / 2,
+  imageObject.y = ( params.y ? params.y : $(window).height() / 2) - imageObject.image.height() / 2;
+
+  Animations.fadeIn(imageObject);
 };
 
 
