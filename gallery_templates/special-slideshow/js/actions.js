@@ -1,4 +1,6 @@
 /* NOTES:
+ * Actions are often used animations.  If we need to make a custom animation, simply make one in the special-slideshow-actions.js queue
+ * 
  * Dependencies:
  * GLOBAL object must exist
  * GLOBAL.objectIndex must exist
@@ -96,6 +98,36 @@ Actions.createSliders = function(numPics, interval)
   {
     setTimeout(helper_createSlider , i * interval );
   }
+};
+
+/* createSingleFadeIn
+ * helper function that creates random fade effects for the specified number of images
+ * 
+ * parameters:
+ * - params
+ *   - 
+ *   
+ * - interval - the time between pics rendered
+ */
+Actions.createSingleFade = function(params)
+{
+  if(!params) { return; }
+  if(!params.x) { params.x = null; }
+  if(!params.y) { params.y = null; }
+  if(!params.interval || isNaN(params.interval) ) { params.interval = 500; }
+  
+  var helper_createSingleFade = function(paramsPassedIn) {
+    return function() {
+      var curParams = Actions.createImage();
+      
+      curParams.x = (!paramsPassedIn.x) ? paramsPassedIn.x : $(window).width() / 2  - curParams.image.width() / 2,
+      curParams.y = (!paramsPassedIn.y) ? paramsPassedIn.y : $(window).height() / 2 - curParams.image.height() / 2;
+  
+      Animations.fadeIn(curParams);
+    }
+  };
+  
+  setTimeout( helper_createSingleFade(params), i * params.interval );
 };
 
 /* createRandomFades

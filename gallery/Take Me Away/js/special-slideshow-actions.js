@@ -8,6 +8,11 @@ if(GLOBAL.actionQueue !== null)
     Actions.createRandomFades(1, 3000);
   };
 
+  var helper_createSingleFadeAnimation = function() {
+    Actions.createSingleFade( { interval: 3500 } );
+  };
+  
+  
   GLOBAL.actionQueue.push( {
     perform : function()
     {
@@ -22,10 +27,10 @@ if(GLOBAL.actionQueue !== null)
     timeout : 3500
   } );  
   
-  GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 500 } );  
+  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 500 } );  
   for(var i=0; i < 5; i++)
   {
-    GLOBAL.actionQueue.push( { perform : helper_createRandomFadeAnimations, timeout : 3500 } );  
+    GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 3500 } );  
   }
   
   GLOBAL.actionQueue.push( {
