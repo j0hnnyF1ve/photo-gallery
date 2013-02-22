@@ -23,8 +23,8 @@ if(GLOBAL.actionQueue !== null)
       var curTextObj = TextActions.createText( { text: curText, z: 1000 } );
       $(curTextObj)
         .css( {
-          left: ($(window).width() / 2) - (curText.width() / 2),
-          top: ($(window).height() / 2) - (curText.height() / 2)
+          left: ($(window).width() / 2) - (curTextObj.width() / 2),
+          top: ($(window).height() / 2) - (curTextObj.height() / 2)
         } )
         .fadeIn(1000)
     }
