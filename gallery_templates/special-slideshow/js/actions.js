@@ -35,7 +35,7 @@ Actions.createImage = function(params)
     imageIndex = (params && params.imageIndex) ? params.imageIndex : Math.floor( (Math.random() * 1000000) % GLOBAL.images.length );
     curImage = GLOBAL.images[imageIndex];
   }
-  params.containerClass = (params.containerClass) ? params.containerClass : 'imageConatiner'
+  params.containerClass = (params.containerClass) ? params.containerClass : 'imageContainer'
 
   var currentId = GLOBAL.objectIndex++;
   var imageContainerId = 'ImageContainer' + currentId;
