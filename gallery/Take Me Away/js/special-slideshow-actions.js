@@ -13,6 +13,21 @@ if(GLOBAL.actionQueue !== null)
     return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500 } ); }
   };
   
+  action = {
+    perform : function() {
+      var curText = TextActions.createText( { text: 'Wanna Get Away?', z: 1000 } );
+      var windowWidth = $(window).width(), windowHeight = $(window).height();
+      var midPointX = windowWidth / 2, midPointY = windowHeight / 2;
+      curText
+        .css( { left: midPointX - (curText.width() / 2), top: midPointY - curText.height()  } )
+        .fadeIn(1000)
+        .delay(2000)
+        .fadeOut(500, (function(myText) { var textToRemove = myText; var f = function() { textToRemove.remove(); }; return f; })(curText) );
+    },
+    timeout : 2000
+  };
+  GLOBAL.actionQueue.push(action);  
+  
   // fade in music
   GLOBAL.actionQueue.push( {
     perform : function()
