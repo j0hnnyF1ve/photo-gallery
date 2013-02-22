@@ -104,11 +104,11 @@ if(!empty($currentGalleryList))
     GLOBAL.maxImgSize = 400;
     Loaders.detailedLoad = <?php echo isset($_GET['detailedLoad']) ? "true" : "false"; ?>;
     if(Loaders.detailedLoad !== true) { Loaders.showLoadingText(); }
-    $(window).ready(
+    $(document).ready(
       function()
       {
-        Controls_Audio.audioTrack = document.getElementById('AudioTrack'); }
-        Controls_Audio.audioTrack.muted = <?php echo isset($_GET['audioOff']) ? "true" : "false"; ?>
+        Controls_Audio.audioTrack = document.getElementById('AudioTrack'); 
+        Controls_Audio.audioTrack.muted = <?php echo isset($_GET['audioOff']) ? "true" : "false"; ?>;
       }
     );
     
