@@ -10,7 +10,7 @@ if(GLOBAL.actionQueue !== null)
   };
 
   var helper_createSingleFadeAnimation = function(curX, curY) {
-    return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500 } ); }
+    return function() { Actions.createSingleFade( { x: curX, y: curY, interval: 3500, containerClass: 'postcardImageContainer' } ); }
   };
   
   GLOBAL.actionQueue.push({
