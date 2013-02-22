@@ -28,7 +28,7 @@ if(GLOBAL.actionQueue !== null)
     timeout : 0
   } );  
   
-  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation, timeout : 500 } );  
+  GLOBAL.actionQueue.push( { perform : helper_createSingleFadeAnimation(), timeout : 500 } );  
   
   for(var i=0; i < 5; i++)
   {
