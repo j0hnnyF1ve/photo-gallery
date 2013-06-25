@@ -5,7 +5,7 @@
 */
 require_once($_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']) . '/include/helper.php');
 
-$page = isset($_GET['page']) ? $_GET['page'] : 'gallery_list';
+$page = isset($_GET['page']) ? $_GET['page'] : 'gallery_index';
 $galleryRoot = 'gallery'; // root of the main gallery folder
 $galleryTemplateRoot = 'gallery_templates';
 $galleryTemplate = isset($_GET['galleryType']) ? $_GET['galleryType'] : 'thumbnail-grid'; // string that tells us how the gallery should be displayed
@@ -47,19 +47,24 @@ if(!empty($galleryTemplate) )
 // create Script Html
 if(!empty($galleryTemplate) )
 {
+  $queryString = '';
+  foreach($_GET as $key => $val) {
+    if(!empty($queryString) ) { $queryString .= '&'; }
+    $queryString .= rawurlencode($key). '=' .rawurlencode($val);
+  }
+  if(!empty($queryString) ) { $queryString = '?' . $queryString; }
+  echo $queryString;
+
   $scriptPath = $galleryTemplateRoot . '/' . $galleryTemplate . '/js';
 //  if(is_file($scriptPath))
   {
-    $scriptList = scandir($scriptPath);
-    $key = array_search('.', $scriptList);
-    array_splice($scriptList, $key, 1);
-    $key = array_search('..', $scriptList);
-    array_splice($scriptList, $key, 1);
-    
+    $scriptList = helper_trimFileList(scandir($scriptPath), $scriptPath);
+
     if(!empty($scriptList))
     {
       foreach($scriptList as $script)
       {
+        if(strpos($script, '.php') > 0) { $script .= $queryString; }
         $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>', 2)  . chr(10);
       }
     }

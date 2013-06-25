@@ -39,31 +39,34 @@ foreach($currentGallery as $file)
 // display the title of the gallery
 echo "<h1>$currentGalleryName</h1>"  . chr(10);
 
-$audioFileList = scandir($currentGalleryDir . '/audio');
-// take out all directorys in the gallery
-foreach($audioFileList as $file)
+if(is_dir($currentGalleryDir . '/audio') )
 {
-  if(is_dir($currentGalleryDir . '/audio/' . $file) )
+  $audioFileList = scandir($currentGalleryDir . '/audio');
+  // take out all directorys in the gallery
+  foreach($audioFileList as $file)
   {
-    $key = array_search($file, $audioFileList);
-    array_splice($audioFileList, $key, 1);
-  }
-}
-
-if(!empty($audioFileList))
-{
-  if($debug === true) {
-    echo '<audio loop="loop" controls="controls">'  . chr(10);
-  }
-  else {
-    echo '<audio loop="loop" autoplay="autoplay" controls="controls">'  . chr(10);
-  }
-    foreach($audioFileList as $audioFile)
+    if(is_dir($currentGalleryDir . '/audio/' . $file) )
     {
-      echo '<source src="'.$currentGalleryDir. '/audio/' . $audioFile.'" type="audio/mpeg" />'  . chr(10); // testing audio at this moment
+      $key = array_search($file, $audioFileList);
+      array_splice($audioFileList, $key, 1);
     }
-    echo 'Sorry, audio is not available at this time';
-  echo '</audio>';
+  }
+
+  if(!empty($audioFileList))
+  {
+    if($debug === true) {
+      echo '<audio loop="loop" controls="controls">'  . chr(10);
+    }
+    else {
+      echo '<audio loop="loop" autoplay="autoplay" controls="controls">'  . chr(10);
+    }
+      foreach($audioFileList as $audioFile)
+      {
+        echo '<source src="'.$currentGalleryDir. '/audio/' . $audioFile.'" type="audio/mpeg" />'  . chr(10); // testing audio at this moment
+      }
+      echo 'Sorry, audio is not available at this time';
+    echo '</audio>';
+  }
 }
 
 

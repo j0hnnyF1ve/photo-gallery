@@ -1,3 +1,4 @@
+
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']) . '/include/helper.php');
 if(!is_dir($galleryRoot) ) { exit('Fatal error: Couldn\'t find gallery path!'); }
@@ -12,6 +13,7 @@ $currentGalleryName = '';
 $currentGalleryDir = '';
 
 $audioFileHtml = '';
+$audioToggleButtonHtml = '';
 $scriptHtml = '';
 $imageScriptString = '';
 
@@ -64,6 +66,8 @@ if(is_dir($currentGalleryDir . '/audio') )
     }
     $audioFileHtml .= helper_addSpaces('Sorry, audio is not available at this time', 8);
     $audioFileHtml .= helper_addSpaces('</audio>', 6) . chr(10);
+
+    $audioToggleButtonHtml = '        <button id="ControlsAudioToggle">Audio On</button>';
   }
 }
 
@@ -84,7 +88,7 @@ if(!empty($currentGalleryList))
       $caption = basename($img,'.'.$info['extension']);
 
       ob_start();
-      ?>  addImageToQueue( { src: '<?php echo $imgPath; ?>', ogWidth: '<?php echo $width; ?>', ogHeight: '<?php echo $height; ?>', caption: '<?php echo $caption; ?>', callback: Loaders.imageLoadAction } );<?php
+      ?>  addImageToQueue( { src: '<?php echo addslashes($imgPath); ?>', ogWidth: '<?php echo $width; ?>', ogHeight: '<?php echo $height; ?>', caption: '<?php echo addslashes($caption); ?>', callback: Loaders.imageLoadAction } );<?php
       echo chr(10);
 
       $imageScriptString .= ob_get_contents();
@@ -108,7 +112,11 @@ if(!empty($currentGalleryList))
       function()
       {
         Controls_Audio.audioTrack = document.getElementById('AudioTrack'); 
-        Controls_Audio.audioTrack.muted = <?php echo isset($_GET['audioOff']) ? "true" : "false"; ?>;
+        if(Controls_Audio.audioTrack) {
+          <?php 
+          echo (isset($_GET['audioOff']) ) ? 'Controls_Audio.turnAudioOff()' : 'Controls_Audio.turnAudioOn()';
+          ?>
+          }
       }
     );
     
@@ -156,7 +164,7 @@ if(!empty($currentGalleryList))
         <button id="ControlsPause">Pause Show</button>
         <button id="ControlsContinue">Continue Show</button>
         <button id="ControlsRestart">Restart Show</button>
-        <button id="ControlsAudioToggle">Audio On</button>
+        <?php echo $audioToggleButtonHtml; ?>
       </div>
     </div>
     <div id="ControlsTab">Controls</div>

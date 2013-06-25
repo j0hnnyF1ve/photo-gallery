@@ -9,8 +9,7 @@ function helper_trimFileList($fileList, $rootDir = '')
   $fullDirPath = (!empty($rootDir)) ? $rootDir . '/' : '';
   foreach($fileList as $file)
   {
-    
-    if(is_dir($fullDirPath . $file) )
+    if(is_dir($fullDirPath . $file) || in_array($file, array('.', '..') ) )
     {
       $key = array_search($file, $fileList);
       array_splice($fileList, $key, 1);
@@ -19,13 +18,18 @@ function helper_trimFileList($fileList, $rootDir = '')
   return $fileList;
 }
 
+/*
+ * helper_trimDirList
+ * takes a list of files/directories, and takes out any files
+ * get rid of the . and .. operators in the directory list
+ */
 function helper_trimDirList($dirList, $rootDir = '')
 {
   $fullDirPath = (!empty($rootDir)) ? $rootDir . '/' : '';
   foreach($dirList as $dir)
   {
     
-    if(!is_dir($fullDirPath . $dir) )
+    if(!is_dir($fullDirPath . $dir) || in_array($dir, array('.', '..') ) )
     {
       $key = array_search($dir, $dirList);
       array_splice($dirList, $key, 1);
