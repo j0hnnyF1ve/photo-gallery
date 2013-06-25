@@ -1,0 +1,36 @@
+#GalleryIndex
+{
+  margin: 0 auto; padding: 0;
+  text-align: center;
+  list-style-type: none;
+  font-size: 16px;
+}
+
+#GalleryIndex li
+{
+	float: left;
+  margin: 15px 0 15px 15px;
+  text-align: center;
+}
+
+
+#GalleryIndex li:nth-child(3)
+{
+	float: none;
+	margin: 15px auto 0;
+	width: 45%;
+	clear: both;
+	display: block;
+}
+
+#GalleryIndex li a
+{
+	text-decoration: none;
+	font-weight: 800;
+}
+#GalleryIndex li img
+{
+	margin: 0 auto;
+	border: solid 2px #fff;
+	display:block;
+}

@@ -1,0 +1,51 @@
+#Content { 
+  position:; relative;
+}
+
+/* Layout Container for thumbnail viewer on the left side */
+#LayoutContainer #DisplayDiv
+{
+  margin: 0 auto;
+  text-align: center;
+  height: 600px;
+}
+
+#LayoutContainer #DisplayImg { 
+  border: solid 3px #fff;
+}
+
+#ThumbnailViewer
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 0 15px;
+  width: 230px;
+  height: 260px;
+  border: solid 1px #fff;
+  border-radius: 8px;
+  overflow: hidden; 
+  white-space: nowrap;
+  background-color: #222;
+}
+
+#ThumbnailMenubar {
+  height: 30px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+#ThumbnailContent {
+  overflow-y: scroll;
+  height: 83%;
+}
+
+#ThumbnailViewer .row {
+  height: 80px;
+}
+
+#ThumbnailViewer img {
+  border: solid 2px #fff;
+  margin: 0 0 10px 10px;
+}
+

@@ -1,0 +1,88 @@
+#LayoutContainer.bottom #DisplayDiv
+{
+  text-align: center;
+  height: 460px;
+}
+
+#LayoutContainer.bottom #DisplayImg { 
+  border: solid 3px #fff;
+}
+
+#LayoutContainer.bottom #ThumbnailViewer
+{
+  margin-top: 15px;
+  padding: 0 15px;
+  width: 800px;
+  height: 250px;
+  overflow-x: scroll; 
+  white-space: nowrap;
+}
+
+#LayoutContainer.bottom #ThumbnailViewer img {
+  border: solid 2px #fff;
+  margin: 0 0 10px 15px;
+}
+
+
+
+/* Layout Container for thumbnail viewer on the left side */
+#LayoutContainer.left #DisplayDiv
+{
+  float: right;
+  width: 550px;
+  text-align: center;
+  height: 600px;
+}
+
+#LayoutContainer.left #DisplayImg { 
+  border: solid 3px #fff;
+}
+
+#LayoutContainer.left #ThumbnailViewer
+{
+  float: left;
+  margin-top: 15px;
+  padding: 0 15px;
+  width: 185px;
+  height: 600px;
+  overflow-y: scroll; 
+  white-space: nowrap;
+}
+
+#LayoutContainer.left #ThumbnailViewer img {
+  border: solid 2px #fff;
+  display: block;
+  margin: 0 0 10px 0;
+}
+
+/* Layout Container for thumbnail viewer on the right side */
+#LayoutContainer.right #DisplayDiv
+{
+  float: left;
+  width: 550px;
+  text-align: center;
+  height: 600px;
+}
+
+#LayoutContainer.right #DisplayImg { 
+  border: solid 3px #fff;
+}
+
+#LayoutContainer.right #ThumbnailViewer
+{
+  float: right;
+  direction: rtl;
+  margin-top: 15px;
+  padding: 0 15px;
+  width: 185px;
+  height: 600px;
+  overflow-y: scroll; 
+  white-space: nowrap;
+}
+
+#LayoutContainer.right #ThumbnailViewer img {
+  border: solid 2px #fff;
+  display: block;
+  margin: 0 0 10px 0;
+}
+
