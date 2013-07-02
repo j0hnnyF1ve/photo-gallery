@@ -1,51 +1,123 @@
+body { 
+  overflow: hidden;
+}
+
 #Content { 
-  position:; relative;
+  position: relative;
 }
 
 /* Layout Container for thumbnail viewer on the left side */
 #LayoutContainer #DisplayDiv
 {
-  margin: 0 auto;
+  position: relative;
+  margin: 15px auto 0;
   text-align: center;
-  height: 600px;
 }
 
 #LayoutContainer #DisplayImg { 
+  margin-top: 120px;
   border: solid 3px #fff;
+}
+
+.navImg { 
+  position: absolute;
+  border: solid 2px #fff;
 }
 
 #ThumbnailViewer
 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 0 0 15px;
-  width: 230px;
+  visibility: hidden;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0 0 0 -8%;
+  padding: 0;
   height: 260px;
   border: solid 1px #fff;
-  border-radius: 8px;
-  overflow: hidden; 
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   white-space: nowrap;
+  overflow: hidden;
   background-color: #222;
 }
 
 #ThumbnailMenubar {
-  height: 30px;
+  float: left;
+  position: relative;
+  width: 50px;
+  height: 100%;
+  color: #000;
   background-color: #fff;
-  margin-bottom: 10px;
+
+  border: solid 1px #fff;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+
+}
+#ThumbnailMenubar a {
+  position: absolute;
+  left: 30px;
+  top: 120px;
+
+  -moz-transform-origin: bottom left;
+  -webkit-transform-origin: bottom left;
+  -o-transform-origin: bottom left;
+  -ms-transform-origin: bottom left;
+  transform-origin: bottom left;
+
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg) ;
+  -o-transform: rotate(-90deg) ;
+  -ms-transform: rotate(-90deg) ;
+  transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=-1);
+
+  display: block;
+  font-weight: 800;
+  font-size: 18px;
+  color: #000;
 }
 
 #ThumbnailContent {
   overflow-y: scroll;
-  height: 83%;
+  margin: 10px 0;
+  height: 100%;
+  width: 85%;
 }
 
 #ThumbnailViewer .row {
-  height: 80px;
+  height: 70px;
 }
 
 #ThumbnailViewer img {
-  border: solid 2px #fff;
   margin: 0 0 10px 10px;
+}
+
+#ThumbnailViewer img.thumb {
+  border: solid 2px #fff;
+}
+
+/* mobile styles */
+
+.mobile h1 { 
+  font-size: 28px;
+}
+
+.mobile #LayoutContainer #DisplayImg { 
+  margin-top: 180px;
+}
+
+.mobile #ThumbnailViewer .row {
+  height: 100px;
+}
+
+.mobile #ThumbnailMenubar { 
+  width: 60px;
+}
+
+.mobile #ThumbnailMenubar a {
+  left: 45px;
+  top: 145px;
+  font-size: 26px;
 }
 

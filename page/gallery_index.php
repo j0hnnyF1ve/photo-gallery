@@ -13,7 +13,8 @@ if(empty($galleryIndexList))
 echo '<h1>My Photo Galleries</h1>';
 echo '<ul id="GalleryIndex">';
 
-$maxDim = 375;
+
+$maxDim = ($isPhone) ? 330 : 375;
 foreach($galleryIndexList as $gallery)
 {
 	$galleryDir = $galleryRoot . '/' . $gallery;

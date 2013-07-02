@@ -3,6 +3,7 @@
 /*
  * helper_trimFileList
  * takes a list of files, and takes out any directories
+ * root dir is supplied because we do a check to see if a file is actually a directory
  */
 function helper_trimFileList($fileList, $rootDir = '')
 {
@@ -22,6 +23,7 @@ function helper_trimFileList($fileList, $rootDir = '')
  * helper_trimDirList
  * takes a list of files/directories, and takes out any files
  * get rid of the . and .. operators in the directory list
+ * root dir is supplied because we do a check to see if a file is actually a directory
  */
 function helper_trimDirList($dirList, $rootDir = '')
 {

@@ -4,40 +4,47 @@ var KeyActions = {};
 (function(){
 "use strict";
 
-KeyActions.keydown = function() {
-	if( event.keyCode in [37,38,39,40] ) { return; }
+KeyActions.keydown = function(event) {
+	if( !($.inArray(event.keyCode, [37,38,39,40]) >= 0 ) ) { return; }
 
+	var xid = GLOBAL.xid, yid = GLOBAL.yid, changeImage = false;
 	switch(event.keyCode) {
 		case 37: // left
       if(GLOBAL.xid - 1 >= 0) { 
-      	Actions.setActiveImage( { xid:GLOBAL.xid - 1, yid: GLOBAL.yid } ); 
-	      Actions.switchImage( {image: GLOBAL.activeImage} );
+      	xid = 1 * xid - 1;
+      	changeImage = true;
       } 
-			event.preventDefault();
 			break;
 		case 38: // up
       if((GLOBAL.yid * 1) + 1 < GLOBAL.images.length) { 
-      	Actions.setActiveImage( { xid: GLOBAL.xid, yid:(GLOBAL.yid * 1) + 1 } ); 
-	      Actions.switchImage( {image: GLOBAL.activeImage} );
+      	yid = 1 * yid + 1;
+      	changeImage = true;
       } 
-			event.preventDefault();
 			break;
 		case 39: // right
       if((GLOBAL.xid * 1) + 1 < GLOBAL.images[GLOBAL.yid].length) { 
-      	Actions.setActiveImage( { xid:(GLOBAL.xid * 1) + 1, yid: GLOBAL.yid } ); 
-	      Actions.switchImage( {image: GLOBAL.activeImage} );
+      	xid = 1 * xid + 1;
+      	changeImage = true;
       } 
-			event.preventDefault();
 			break;
 		case 40: // down
       if(GLOBAL.yid - 1 >= 0) { 
-      	Actions.setActiveImage( { xid: GLOBAL.xid, yid:GLOBAL.yid - 1 } ); 
-	      Actions.switchImage( {image: GLOBAL.activeImage} );
+  			yid = 1 * yid - 1;
+      	changeImage = true;
       } 
-			event.preventDefault();
 			break;
 		default: break;
 	}
+
+	var keyAction = function(curXid, curYid) {
+  	Actions.setActiveImage( { xid: curXid, yid: curYid } ); 
+    Actions.switchImage( {image: GLOBAL.activeImage} );
+	}
+
+	if(changeImage == true && GLOBAL.images[yid][xid] != null && GLOBAL.images[yid][xid].src != null) {
+		keyAction(xid, yid);
+	}
+	event.preventDefault();
 }
 
 })();
