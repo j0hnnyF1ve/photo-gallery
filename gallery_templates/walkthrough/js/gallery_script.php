@@ -49,7 +49,7 @@ if(is_dir($serverGalleryDir))
 }
 else
 {
-  echo 'The gallery you selected was not found. ';
+  echo "$('body').html('The gallery you selected was not found. ');";
   return;
 }
 
