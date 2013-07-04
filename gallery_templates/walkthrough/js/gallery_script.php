@@ -11,7 +11,6 @@ $detect = new Mobile_Detect;
 $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 $isPhone = (strpos($deviceType, 'phone') !== false) ? true : false;
 
-
 $currentGalleryName = isset($_GET['currentGallery']) ? $_GET['currentGallery'] : '';
 $currentGalleryDir = $appRoot . '/' . $galleryRoot . '/' . $currentGalleryName;
 $dataName = isset($_GET['data']) ? $_GET['data'] . '.xml' : 'walkthrough.xml';
@@ -19,6 +18,7 @@ $dataName = isset($_GET['data']) ? $_GET['data'] . '.xml' : 'walkthrough.xml';
 // use the server directory to get the root
 $serverGalleryDir = $_SERVER['DOCUMENT_ROOT'] . $currentGalleryDir;
 $hasXml = false;
+
 if(is_dir($serverGalleryDir))
 {
 
@@ -115,42 +115,40 @@ $(document).ready(
     Actions.setActiveImage( { xid: midX, yid: 0 } );
     Actions.switchImage( {image: GLOBAL.activeImage} );
 
+    var message = 'This is a test of writing out a message.  This is very exciting because now we have a good way of adding a description to our gallery.';
+    Message.setCurrent(message);
+
     setupNav();
 
-    $(document).keydown(KeyActions.keydown)
-      .mouseover( MouseActions.mouseOver )
-      .mouseout( MouseActions.mouseOut );
-
-    if('ontouchstart' in window) {
-      $(document)
-        .on('touchstart', function(e) 
-        {
-          if(event.target.id === 'ToggleLink' || event.target.id === 'ThumbnailMenubar') { MenuActions.toggle(); }
-          if(!event.target.src || (!$(event.target).hasClass('thumb') && !$(event.target).hasClass('navImg')) ) { return; }
-
-          var curXid = $(event.target).attr('xid'),
-              curYid = $(event.target).attr('yid');
-
-          if(Actions.isActiveImage(curXid, curYid) ) { return; }
-
-          Actions.setActiveImage( { xid: curXid, yid: curYid } );
-          Actions.switchImage( {image:  GLOBAL.activeImage } );
-
-          event.preventDefault();
-        } );
+    if('ontouchstart' in window) 
+    {
+      $(document).on('touchstart', UI.TouchHandler.touchstart);
     }
-    else {
-      $(document)  
-        .mousedown( MouseActions.mouseDown )
+    else 
+    {
+      $(document).mousedown( UI.MouseHandler.mousedown )
     }
-      $(document)  
-      .mousemove( MouseActions.mouseMove )
-      .mouseup( MouseActions.mouseUp )
+
+    if('ontouchend' in window) 
+    {
+      $(document).on('touchend', UI.TouchHandler.touchend);
+    }
+    else 
+    {
+      $(document).mouseup( UI.MouseHandler.mouseup );
+    }
+
+    $(document).keydown(UI.KeyHandler.keydown)
+      .mouseover( UI.MouseHandler.mouseover )
+      .mouseout( UI.MouseHandler.mouseout )
+      .mousemove( UI.MouseHandler.mousemove )
       .resize( function() { Actions.setNavImagePos(); } )
 
+    $('#MessageBox').click( UI.OptionsHandler.messageBoxClick );
+    $('#MessageMode').click( UI.OptionsHandler.messageModeClick );
+
     /* for mobile browsers */
-    $(window)
-      .on( 'orientationchange', function() { Actions.setNavImagePos(); } );
+    $(window).on( 'orientationchange', function() { Actions.setNavImagePos(); } );
 
   }
 );
@@ -203,7 +201,7 @@ var setupThumbnailViewer = function() {
   // if we have a layout with more than 5 columns (such as a layout with many columns, 1 row), then have a horizontal scrollbar
   $('#ThumbnailViewer')
     .appendTo('body')
-    .height( ($('#ThumbnailViewer img:eq(0)').height() + 25) * 3);
+    .height( (($('#ThumbnailViewer img:eq(0)').height() + 25) * 3) + $('#Options').height() );
  
   var newHeight = (window.height > 500) ? window.height : 500;
   $('#Content').height(newHeight);
@@ -215,10 +213,7 @@ var setupThumbnailViewer = function() {
 
   MenuActions.hideMenu();
   setTimeout( function() {$('#ThumbnailViewer').css('visibility', 'visible'); }, 1000);
-
 }
-
-
 
 })();
 /* end gallery script */

@@ -4,6 +4,7 @@ var Actions = {};
 (function(){
 "use strict";
 
+
 Actions.isActiveImage = function(xid, yid) {
 	return (GLOBAL.xid === xid && GLOBAL.yid === yid);
 }
@@ -28,9 +29,20 @@ Actions.setActiveImage = function(params) {
   // get the offset by getting the thumbnail offset, and subtracting it from the container's offset
 	var offset = $('#Image' + GLOBAL.yid + GLOBAL.xid).offset().top - $('#ThumbnailContent').offset().top + $('#ThumbnailContent').scrollTop() - ($('#ThumbnailContent').height() / 2) + ($('#Image' + GLOBAL.yid + GLOBAL.xid).height() / 2);
 
+  Message.hide();
 	clearTimeout(GLOBAL.timeout);
   // wait a bit before updating position of thumbnail cursor
-	GLOBAL.timeout = setTimeout( (function(curOffset) { return function() { $('#ThumbnailContent').animate( { scrollTop: curOffset, duration: 10 } ); Actions.setNavImages(); } })(offset), 300);
+	GLOBAL.timeout = setTimeout( (function(curOffset) { return function() { 
+    $('#ThumbnailContent').animate( { scrollTop: curOffset, duration: 10 } ); 
+    Actions.setNavImages();  
+    Message.show(); 
+    Message.setupCurrentPosition(); 
+    Message.adjustSize();
+    Message.cancel();
+    Message.clear(); 
+    Message.write();
+
+  } })(offset), 300);
 };
 
 Actions.switchImage = function(params) {
@@ -52,9 +64,17 @@ Actions.switchImage = function(params) {
     width = GLOBAL.maxImgSize * ratio;
   }
 
-//	var margin = ( $('#DisplayDiv').height() - height ) / 2;
-//	$('#DisplayDiv').css( {'margin-top': margin } );
-  $('#DisplayImg').hide().attr('src', curImage.src).width(width).height(height).fadeIn(300);
+  $('#DisplayImg')
+    .css('visibility', 'hidden')
+    .attr('src', curImage.src)
+    .width(width).height(height)
+    .hide().css('visibility', 'visible')
+    .fadeIn(300);
+
+  if(curImage && curImage.description) 
+  {
+    Message.setCurrent(curImage.description);
+  }
 };
 
 Actions.setNavImages = function() {

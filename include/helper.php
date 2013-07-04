@@ -5,6 +5,20 @@
  * takes a list of files, and takes out any directories
  * root dir is supplied because we do a check to see if a file is actually a directory
  */
+function helper_trimFileDirList($fileList, $rootDir = '') 
+{
+  $fullDirPath = (!empty($rootDir)) ? $rootDir . '/' : '';
+  foreach($fileList as $file)
+  {
+    if(in_array($file, array('.', '..') ) )
+    {
+      $key = array_search($file, $fileList);
+      array_splice($fileList, $key, 1);
+    }
+  }
+  return $fileList;
+}
+
 function helper_trimFileList($fileList, $rootDir = '')
 {
   $fullDirPath = (!empty($rootDir)) ? $rootDir . '/' : '';

@@ -57,14 +57,33 @@ if(!empty($galleryTemplate) )
 
   if(is_dir($scriptPath))
   {
-    $scriptList = helper_trimFileList(scandir($scriptPath), $scriptPath);
+    $scriptList = helper_trimFileDirList(scandir($scriptPath), $scriptPath);
 
     if(!empty($scriptList))
     {
       foreach($scriptList as $script)
       {
-        if(strpos($script, '.php') > 0) { $script .= $queryString; }
-        $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>', 2)  . chr(10);
+        if(is_dir($scriptPath .'/' . $script) ) 
+        {
+
+          if(strpos($script, 'helpers') !== false) { continue; }
+          $secondaryScriptPath = $scriptPath .'/' . $script;
+
+          $secondaryScriptList = helper_trimFileList(scandir($secondaryScriptPath), $secondaryScriptPath);
+          if(!empty($secondaryScriptList) ) 
+          {
+            foreach($secondaryScriptList as $secondaryScript) 
+            {
+              if(strpos($secondaryScript, '.php') > 0) { $secondaryScript .= $queryString; }
+              $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $secondaryScriptPath .'/' . $secondaryScript . '"></script>', 2)  . chr(10);
+            }
+          }
+        }
+        else // TODO: This needs to be a recursive directory/file traversal someday
+        {
+          if(strpos($script, '.php') > 0) { $script .= $queryString; }
+          $scriptHtml .= helper_addSpaces('<script type="text/javascript" src="' . $scriptPath .'/' . $script . '"></script>', 2)  . chr(10);
+        }
       }
     }
   }

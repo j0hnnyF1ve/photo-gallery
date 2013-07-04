@@ -14,11 +14,21 @@ $mobileDeviceWidth = 800;
     <img class="navImg right" id="ImgRight" />
     <img class="navImg down" id="ImgDown" />
     <img id="DisplayImg" />
+    <div id="MessageBackground"></div>
+    <span id="Message"></span>
   </div>
 
   <nav id="ThumbnailViewer">
     <div id="ThumbnailMenubar">
       <a id="ToggleLink">Photo Map</a>
+    </div>
+    <div id="Options">
+      <div>
+        <input type="checkbox" id="MessageBox" /><label for="MessageBox">Hide Description?</label>
+      </div>
+      <div>
+        <input type="checkbox" id="MessageMode" /><label for="MessageMode">Show Description Quickly</label>
+      </div>
     </div>
     <div id="ThumbnailContent"></div>
   </nav>
