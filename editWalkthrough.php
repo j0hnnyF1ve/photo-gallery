@@ -3,8 +3,8 @@
 <html>
 	<head>
 		<title>Edit Walkthrough</title>
-	  <script type="text/javascript" src="js/jquery.js"></script>
-	  <link rel="stylesheet" href="apps/editWalkthrough/css/main.css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<link rel="stylesheet" href="apps/editWalkthrough/css/main.css" />
 	</head>
 	<body>
 		<div id="Content">
@@ -12,42 +12,21 @@
 				<span>Edit</span>
 				<nav>
 					<button id="SaveButton">Save</button>
+					<button id="ReloadButton">Reload</button>
 				</nav>
-				<div></div>
+				<div id="Message"></div>
 			</h1>
 			<div id="Editor"></div>
 		</div>
 
-	  <?php echo $scriptHtml; ?>
+<?php echo $scriptHtml; ?>
+
 		<script type="text/javascript">
-			
+			// initialize some basic variables, these should always reflect the current state of the application
 			var GLOBAL = {};
-			// wrap in anonymous function to prevent namespace conflicts
-			(function(){
-			"use strict";
-
-				GLOBAL.filename = '<?php echo $filename; ?>';
-
-				$(function() { 
-			    $(document)
-			      .mouseover( UI.mouseOver )
-			      .mouseout( UI.mouseOut )
-			      .mousedown( UI.mouseDown )
-			      .mousemove( UI.mouseMove )
-			      .mouseup( UI.mouseUp );
-
-			    $('#SaveButton').click( OpHandler.saveHandler )
-
-					$.ajax({
-						type: "POST",
-						url: GLOBAL.filename,
-						dataType: 'xml',
-					}).done(OpHandler.loadHandler);
-
-				});
-
-			})();
-			/* end script */
+			GLOBAL.filename = '<?php echo $filename; ?>';
+			GLOBAL.path = '<?php echo $path; ?>';
+			GLOBAL.galleryName = '<?php echo $galleryName; ?>';
 		</script>
 	</body>
 </html>

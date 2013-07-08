@@ -19,6 +19,7 @@ $dataName = isset($_GET['data']) ? $_GET['data'] . '.xml' : 'walkthrough.xml';
 $serverGalleryDir = $_SERVER['DOCUMENT_ROOT'] . $currentGalleryDir;
 $hasXml = false;
 
+$curStartRow = 0; $curStartCol = 0;
 if(is_dir($serverGalleryDir))
 {
 
@@ -29,11 +30,24 @@ if(is_dir($serverGalleryDir))
     $xml = simplexml_load_file($serverGalleryDir . '/data/' . $dataName);
     $rowCount = 0;
     $colCount = 0;
-    foreach($xml->row as $row) {
+    foreach($xml->row as $row) 
+    {
       $currentGallery[$rowCount] = array();
-      foreach($row->file as $file) {
-        if($file->path) {
-          $currentGallery[$rowCount][$colCount++] = array('path' => $file->path);
+      foreach($row->file as $file) 
+        {
+        if($file->path) 
+        {
+          $currentGallery[$rowCount][$colCount] = array('path' => $file->path);
+          if($file->startpoint) 
+          {
+            $curStartRow = $rowCount;
+            $curStartCol = $colCount;
+          }
+          if($file->description) 
+          {
+            $currentGallery[$rowCount][$colCount]['description'] = $file->description;
+          }
+          $colCount++;
         }
         else {
           $currentGallery[$rowCount][$colCount++] = array();
@@ -112,11 +126,12 @@ $(document).ready(
     var midX = Math.floor(GLOBAL.images[0].length / 2);
     setupThumbnailViewer();
 
-    Actions.setActiveImage( { xid: midX, yid: 0 } );
+//    Actions.setActiveImage( { xid: midX, yid: 0 } );
+    Actions.setActiveImage( { xid: <?php echo $curStartCol; ?>, yid: <?php echo $curStartRow; ?> } );
     Actions.switchImage( {image: GLOBAL.activeImage} );
 
-    var message = 'This is a test of writing out a message.  This is very exciting because now we have a good way of adding a description to our gallery.';
-    Message.setCurrent(message);
+//    var message = 'This is a test of writing out a message.  This is very exciting because now we have a good way of adding a description to our gallery.';
+//    Message.setCurrent(message);
 
     setupNav();
 
@@ -168,6 +183,8 @@ var setupThumbnailViewer = function() {
   var imageList = GLOBAL.images;
   var row;
 
+  console.log(imageList);
+
   // go through the image array and take out all the images
 //  for(var i=0; i < imageList.length; i++)
   for(var i=imageList.length-1; i >= 0; i--)
@@ -177,7 +194,12 @@ var setupThumbnailViewer = function() {
 //    for(var j=imageList[i].length-1; j >= 0; j--)
     {
       var image = imageList[i][j];
+
+console.log(i, j, image);
+
       var ratio = image.ogHeight / image.ogWidth;
+
+
 
       $('<img />', 
         { 

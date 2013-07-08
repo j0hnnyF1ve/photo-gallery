@@ -1,6 +1,8 @@
-/*
-body { width: 100%; height: 100%; }
-*/
+body 
+{
+  font: 14px arial;
+}
+
 
 h1#EditTitle 
 { 
@@ -12,9 +14,141 @@ h1#EditTitle
 	width: 100%;
 	border-bottom: solid 1px #000; 
 }
+
 #Editor { margin: 120px auto 0; width: 1420px; overflow: hidden; }
+#Message { }
+.error { color: red; }
+.success { color: blue; }
+
 .row { border: solid 1px #999; margin: 0 0 10px 10px; float: left; clear: left; }
-.row h2 { margin: 0; background-color: #000; color: #fff; }
+.row h2 { margin: 0; height: 35px; background-color: #000; color: #fff; }
 .file { margin-left: 10px; }
 .thumb, .blank { width: 250px; height: 250px; margin: 10px; border: solid 4px transparent;}
+.blank { border: dotted 4px #ccc;}
 .selected { border: solid 4px red; }
+.startpoint { border: dashed 4px blue;}
+
+#Options
+{
+  position: absolute;
+  color: #000;
+  border: solid 1px #fff;
+  background-color: gold;
+}
+
+#Options button 
+{
+  font-size: 16px;
+  display: block;
+  min-width: 140px;
+  min-height: 25px;
+  padding: 1px 6px;
+  margin: 3px;
+}
+
+.dialog, .dialogShadow
+{
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.dialog 
+{
+  z-index: 9999;
+  min-height: 150px;
+  min-width: 150px;
+  background-color: #fff;
+  border: ridge 5px #999;
+  text-align: center;
+}
+
+.dialog .menubar
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  font-weight: 700;
+  background-color: #999;
+  height: 30px;
+  width: 100%;
+}
+
+.dialog .message
+{
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.dialog .buttons
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.dialog button 
+{
+  min-width: 50px;
+}
+
+.dialogShadow
+{
+  background-color: #666;
+  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+}
+
+#ImageBrowser
+{
+  width: 500px;
+  height: 500px;
+}
+
+#ImageBrowser img
+{
+  width: 120px;
+  height: 120px;
+  border: solid 2px #fff;
+  margin: 5px;
+}
+
+#ImageBrowser .imageList
+{
+  height: 430px;
+  margin-top: 30px;
+  overflow-y: scroll;
+}
+
+#ImageBrowser .imageList .unused
+{
+  border: dotted 2px orange;
+}
+
+#ImageEditor
+{
+  position: absolute;
+  z-index: 9999;
+  min-height: 75px;
+  min-width: 300px;
+  background-color: #fff;
+  border: ridge 5px #999;
+  padding: 5px;
+}
+
+#ImageEditor label,
+#ImageEditor textarea
+{
+  display: block;
+}
+
+#ImageEditor #Description 
+{
+  height: 50px;
+  width: 95%;
+}

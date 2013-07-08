@@ -24,7 +24,6 @@ function generateLoadImagesJsFromFiles($gallery, $galleryDir, $serverDir)
       $width = $dimensions[0];
       $height = $dimensions[1];
       $caption = basename($img,'.'.$info['extension']);
-
       ?>  
 var param = 
 { src: '<?php echo addslashes($imgPath); ?>', 
@@ -77,7 +76,8 @@ function generateLoadImagesJsFromXml($galleryList, $serverDir) {
     $colCount = count($galleryList[$i]);
     $imageScriptString .= chr(10) . 'GLOBAL.images['.$i.'] = new Array();'; 
 
-    for($j=0; $j < $colCount; $j++) {
+    for($j=0; $j < $colCount; $j++) 
+    {
 
       if( empty($galleryList[$i][$j]) ) {
           ob_start();
@@ -90,6 +90,7 @@ GLOBAL.images[<?php echo $i; ?>][<?php echo $j; ?>] = {};
       else
       {
         $imgPath = $galleryList[$i][$j]['path'];
+        $description = (isset($galleryList[$i][$j]['description']) ) ? $galleryList[$i][$j]['description'] : '';
 
         $file = basename($imgPath);
         $serverPath = $serverDir.'/'.$file;
@@ -110,6 +111,7 @@ param =
   ogWidth: '<?php echo $width; ?>', 
   ogHeight: '<?php echo $height; ?>', 
   caption: '<?php echo addslashes($caption); ?>', 
+  description: '<?php echo addslashes($description); ?>',
   callback: Loaders.imageLoadAction };
 GLOBAL.images[<?php echo $i; ?>][<?php echo $j; ?>] = param;
 <?php

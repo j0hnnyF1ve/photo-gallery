@@ -1,5 +1,7 @@
 <?php
-function saveDataFile($data, $filepath) {
+function saveDataFile($data, $filepath) 
+// TODO: add in validation for data and filepath
+{
 	$name = basename($filepath);
 	$parentDir = dirname($filepath);
 
@@ -8,6 +10,7 @@ function saveDataFile($data, $filepath) {
 	$numColumns = (!empty($data[0]) ) ? count($data[0]) : '';
 
 	$count = 0;
+
 	// reverse order because the bottommost displayed element are the 1st ones
 //	for($i=0; $i < $numRows; $i++)
 	for($i=$numRows - 1; $i >= 0; $i--)
@@ -18,19 +21,35 @@ function saveDataFile($data, $filepath) {
 			$file = $row->addChild('file');
 			$obj = $data[$i][$j]; 
 
+			foreach($obj as $prop => $value)
+			{
+				if(!empty($value) ) 
+				{
+					$file->addChild($prop, urldecode($value) );
+				}
+			}
+
+/*
 			if(!empty($obj) && !empty($obj['path']) ) 
 			{
 				$imgPath = $obj['path'];
 				$file->addChild('path', $imgPath);
+				if( !empty($obj['startpoint']) )
+				{
+					$file->addChild('startpoint', $obj['startpoint']);
+				}
 			} 
+*/
 			$count++;
 		}	
 	}
-	header('Content-type: text/xml');
-	print($xml->asXML());
 
 	$fp = fopen($filepath, 'w');
 	fwrite($fp, $xml->asXML() );
 	fclose($fp);
+
+//	$remoteMessage = new RemoteMessage(true, "$name was saved successfully", $xml->asXML() ); 
+	$remoteMessage = new RemoteMessage(true, "$name was saved successfully", $xml->asXML() ); 
+	echo $remoteMessage->getJson(); 
 }
 ?>

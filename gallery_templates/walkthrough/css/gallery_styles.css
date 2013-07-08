@@ -141,6 +141,11 @@ body {
   border: solid 2px #fff;
 }
 
+#ThumbnailViewer img.blank 
+{
+  border: solid 2px transparent;
+}
+
 /* mobile styles */
 
 .mobile h1 

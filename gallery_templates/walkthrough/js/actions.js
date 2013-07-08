@@ -71,9 +71,13 @@ Actions.switchImage = function(params) {
     .hide().css('visibility', 'visible')
     .fadeIn(300);
 
-  if(curImage && curImage.description) 
+  if(curImage && $(curImage).attr('description') ) 
   {
-    Message.setCurrent(curImage.description);
+    Message.setCurrent( $(curImage).attr('description') );
+  }
+  else
+  {
+    Message.setCurrent( '' );
   }
 };
 
