@@ -8,13 +8,14 @@
 
 #GalleryIndex li
 {
-	float: left;
-  margin: 15px 0 15px 15px;
+  display: block;
+  overflow: hidden;
+  margin: 15px 0 15px;
   text-align: center;
 }
 
+/*
 #GalleryIndex li:nth-child(3n+2) {
-  float: right;
   margin: 15px 15px 15px 0;
 }
 
@@ -27,6 +28,7 @@
 	clear: both;
 	display: block;
 }
+*/
 
 #GalleryIndex li a
 {

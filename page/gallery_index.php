@@ -2,7 +2,7 @@
 /*
 A special index for my travel photo galleries
 */
-$galleryIndexList = helper_trimDirList(scandir($galleryRoot), $galleryRoot);
+$galleryIndexList = helper_trimDirList(scandir(GALLERY_ROOT), GALLERY_ROOT);
 
 if(empty($galleryIndexList))
 {
@@ -17,7 +17,8 @@ echo '<ul id="GalleryIndex">';
 $maxDim = ($isPhone) ? 330 : 375;
 foreach($galleryIndexList as $gallery)
 {
-	$galleryDir = $galleryRoot . '/' . $gallery;
+    if($gallery != 'Beaches and Scenery of Thailand') { continue; }
+	$galleryDir = GALLERY_ROOT . '/' . $gallery;
 	$galleryList = helper_trimFileList(scandir($galleryDir), $galleryDir);
 	$galleryType = 'special-slideshow';
 
